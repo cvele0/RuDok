@@ -1,19 +1,25 @@
 package view;
 
+import controller.ActionManager;
+import lombok.Getter;
+
 import javax.swing.*;
 import java.awt.*;
 
+@Getter
 
 public class MainFrame extends JFrame {
   private static MainFrame instance = null;
 
-  ActionManager actionManager;
+  private ActionManager actionManager;
   Toolbar toolbar;
   Menu menu;
 
   private MainFrame() {}
 
   private void initialize() {
+    actionManager = new ActionManager();
+
     Toolkit toolkit = Toolkit.getDefaultToolkit();
     Dimension screenSize = toolkit.getScreenSize();
     int screenHeight = screenSize.height;
