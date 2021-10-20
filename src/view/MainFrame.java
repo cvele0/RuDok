@@ -36,13 +36,20 @@ public class MainFrame extends JFrame {
     toolbar = new Toolbar();
     add(toolbar, BorderLayout.NORTH);
 
-    leftPanel.setBackground(Color.RED);
-    leftPanel.setSize(1000, 1000);
-    leftPanel.setPreferredSize(new Dimension(300,300));
-    rightPanel.setBackground(Color.BLUE);
+    JScrollPane jScrollPane = new JScrollPane(leftPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+    jScrollPane.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+    jScrollPane.setMinimumSize(new Dimension(100, 200));
 
-    add(leftPanel, BorderLayout.WEST);
-    add(rightPanel, BorderLayout.CENTER);
+    leftPanel.setPreferredSize(new Dimension(1000,300));
+    leftPanel.setBackground(Color.RED);
+    rightPanel.setBackground(Color.BLUE);
+    rightPanel.setMinimumSize(new Dimension(300, 200));
+
+    JSplitPane jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, jScrollPane, rightPanel);
+    jSplitPane.setOneTouchExpandable(true);
+    jSplitPane.setDividerLocation(300);
+
+    add(jSplitPane, BorderLayout.CENTER);
   }
 
   public static MainFrame getInstance() {
