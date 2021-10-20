@@ -1,12 +1,9 @@
 package view;
 
 import controller.ActionManager;
-import lombok.Getter;
 
 import javax.swing.*;
 import java.awt.*;
-
-@Getter
 
 public class MainFrame extends JFrame {
   private static MainFrame instance = null;
@@ -54,5 +51,9 @@ public class MainFrame extends JFrame {
       instance.initialize();
     }
     return instance;
+  }
+
+  public ActionManager getActionManager() {
+    return actionManager;
   }
 }
