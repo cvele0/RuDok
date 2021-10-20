@@ -12,6 +12,8 @@ public class MainFrame extends JFrame {
   private static MainFrame instance = null;
 
   private ActionManager actionManager;
+  private JPanel leftPanel = new JPanel();
+  private JPanel rightPanel = new JPanel();
   Toolbar toolbar;
   Menu menu;
 
@@ -36,6 +38,14 @@ public class MainFrame extends JFrame {
 
     toolbar = new Toolbar();
     add(toolbar, BorderLayout.NORTH);
+
+    leftPanel.setBackground(Color.RED);
+    leftPanel.setSize(1000, 1000);
+    leftPanel.setPreferredSize(new Dimension(300,300));
+    rightPanel.setBackground(Color.BLUE);
+
+    add(leftPanel, BorderLayout.WEST);
+    add(rightPanel, BorderLayout.CENTER);
   }
 
   public static MainFrame getInstance() {
