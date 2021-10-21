@@ -15,6 +15,6 @@ public class NewProjectAction extends AbstractRudokAction {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    //TODO action
+    //TODO add action
   }
 }

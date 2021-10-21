@@ -1,5 +1,7 @@
 package controller;
 
+import view.InfoDialog;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -14,6 +16,7 @@ public class InfoAction extends AbstractRudokAction {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    //TODO add action
+    InfoDialog infoDialog = new InfoDialog();
+    infoDialog.setVisible(true);
   }
 }
