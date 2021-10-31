@@ -1,8 +1,13 @@
 package controller;
 
+import lombok.Getter;
+
+@Getter
+
 public class ActionManager {
   private InfoAction infoAction;
   private NewProjectAction newProjectAction;
+  private EditInfoAction editInfoAction;
 
   public ActionManager() {
     initialize();
@@ -11,12 +16,6 @@ public class ActionManager {
   private void initialize() {
     infoAction = new InfoAction();
     newProjectAction = new NewProjectAction();
-  }
-
-  public InfoAction getInfoAction() {
-    return infoAction;
-  }
-  public NewProjectAction getNewProjectAction() {
-    return newProjectAction;
+    editInfoAction = new EditInfoAction();
   }
 }

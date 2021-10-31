@@ -13,7 +13,12 @@ public class Menu extends JMenuBar {
     helpMenu.setMnemonic(KeyEvent.VK_H);
     helpMenu.add(MainFrame.getInstance().getActionManager().getInfoAction());
 
+    JMenu editMenu = new JMenu("Edit");
+    editMenu.setMnemonic(KeyEvent.VK_E);
+    editMenu.add(MainFrame.getInstance().getActionManager().getEditInfoAction());
+
     this.add(fileMenu);
     this.add(helpMenu);
+    this.add(editMenu);
   }
 }

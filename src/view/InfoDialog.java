@@ -42,21 +42,21 @@ public class InfoDialog extends JDialog {
     add(imagePanel, BorderLayout.CENTER);
     add(textPanel, BorderLayout.NORTH);
   }
-}
 
-class ImagePanel extends JPanel {
-  private Image img;
+  class ImagePanel extends JPanel {
+    private Image img;
 
-  public ImagePanel(String img) {
-    this(new ImageIcon(img).getImage());
-  }
+    public ImagePanel(String img) {
+      this(new ImageIcon(img).getImage());
+    }
 
-  public ImagePanel(Image img) {
-    this.img = img;
-  }
+    public ImagePanel(Image img) {
+      this.img = img;
+    }
 
-  public void paintComponent(Graphics g) {
-    g.drawImage(img, (int) (this.getSize().getWidth() - img.getWidth(null)) / 2,
-            (int) (this.getSize().getHeight() - img.getHeight(null)) / 2, null);
+    public void paintComponent(Graphics g) {
+      g.drawImage(img, (int) (this.getSize().getWidth() - img.getWidth(null)) / 2,
+              (int) (this.getSize().getHeight() - img.getHeight(null)) / 2, null);
+    }
   }
 }
