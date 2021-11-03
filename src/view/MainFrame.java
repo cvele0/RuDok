@@ -17,7 +17,6 @@ public class MainFrame extends JFrame {
 
   private ActionManager actionManager;
   private JPanel rightPanel = new JPanel();
-  private JPanel leftPanel = new JPanel();
 
   private WorkspaceTree workspaceTree;
   private WorkspaceModel workspaceModel;
@@ -54,9 +53,7 @@ public class MainFrame extends JFrame {
 
     JScrollPane jScrollPane = new JScrollPane(workspaceTree, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     jScrollPane.setMinimumSize(new Dimension(100, 300));
-    //jScrollPane.setPreferredSize(new Dimension(300,300));
 
-    //leftPanel.setPreferredSize(new Dimension(300,300));
     rightPanel.setBackground(Color.LIGHT_GRAY);
     rightPanel.setMinimumSize(new Dimension(300, 300));
 
