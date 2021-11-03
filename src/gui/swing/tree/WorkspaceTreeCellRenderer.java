@@ -1,11 +1,9 @@
 package gui.swing.tree;
 
-import jdk.nashorn.api.tree.Tree;
 import model.workspace.*;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellRenderer;
-import javax.swing.tree.TreeNode;
 import java.awt.*;
 import java.net.URL;
 

@@ -1,8 +1,5 @@
 package gui.swing.tree;
 
-import model.workspace.Project;
-import model.workspace.RuNode;
-
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellRenderer;
 

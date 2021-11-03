@@ -4,7 +4,6 @@ import model.workspace.*;
 import view.MainFrame;
 
 import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeNode;
 
 public class WorkspaceModel extends DefaultTreeModel {
   public WorkspaceModel() {

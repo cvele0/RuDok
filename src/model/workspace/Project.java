@@ -1,9 +1,7 @@
 package model.workspace;
 
-import gui.swing.tree.MyTreeNode;
 import lombok.Getter;
 import lombok.Setter;
-import view.MainFrame;
 
 @Getter
 @Setter
