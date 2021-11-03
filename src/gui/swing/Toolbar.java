@@ -1,4 +1,6 @@
-package view;
+package gui.swing;
+
+import view.MainFrame;
 
 import javax.swing.*;
 
