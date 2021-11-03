@@ -61,6 +61,10 @@ public class MyTreeNode extends DefaultMutableTreeNode {
     projects.add(myTreeNode);
   }
 
+  public void removeProject(MyTreeNode myTreeNode) {
+    projects.remove(myTreeNode);
+  }
+
   @Override
   public boolean getAllowsChildren() {
     if (ruNode instanceof RuNodeComposite) {

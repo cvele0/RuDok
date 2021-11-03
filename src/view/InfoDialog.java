@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class InfoDialog extends JDialog {
   public InfoDialog() {
-    super(MainFrame.getInstance(), "Author info", true);
+    super(MainFrame.getInstance(), "Project Author Info", true);
     initialize();
     addItems();
   }

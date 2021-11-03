@@ -5,13 +5,14 @@ import lombok.Setter;
 
 import javax.swing.*;
 import java.awt.*;
+import java.net.URL;
 
 @Getter
 @Setter
 
 public class Presentation extends RuNodeComposite {
-  private String author;
-  private ImagePanel image; //TODO load image
+  private String authorName;
+  private URL imageURL;
 
   public Presentation(RuNode parent, String name) {
     super(parent, name);

@@ -39,6 +39,5 @@ public class WorkspaceTreeCellEditor extends DefaultTreeCellEditor implements Ac
   public void actionPerformed(ActionEvent e) {
     RuNode ruNode = ((MyTreeNode) stavka).getRuNode();
     ruNode.setName(e.getActionCommand());
-    System.out.println(ruNode.getName());
   }
 }

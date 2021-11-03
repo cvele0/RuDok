@@ -19,4 +19,9 @@ public class WorkspaceTree extends JTree {
     ((WorkspaceModel) getModel()).addProject(myTreeNode);
     SwingUtilities.updateComponentTreeUI(this);
   }
+
+  public void removeProject(MyTreeNode myTreeNode) {
+    ((WorkspaceModel) getModel()).removeProject(myTreeNode);
+    SwingUtilities.updateComponentTreeUI(this);
+  }
 }

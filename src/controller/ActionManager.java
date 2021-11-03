@@ -8,6 +8,7 @@ public class ActionManager {
   private InfoAction infoAction;
   private NewProjectAction newProjectAction;
   private EditInfoAction editInfoAction;
+  private RemoveProjectAction removeProjectAction;
 
   public ActionManager() {
     initialize();
@@ -17,5 +18,6 @@ public class ActionManager {
     infoAction = new InfoAction();
     newProjectAction = new NewProjectAction();
     editInfoAction = new EditInfoAction();
+    removeProjectAction = new RemoveProjectAction();
   }
 }
