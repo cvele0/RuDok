@@ -14,6 +14,10 @@ public abstract class RuNodeComposite extends RuNode {
     super(parent, name);
   }
 
+  public RuNodeComposite(RuNode parent) {
+    super(parent);
+  }
+
   public abstract void addChild(RuNode ruNode);
   public abstract void removeChild(RuNode ruNode);
 }

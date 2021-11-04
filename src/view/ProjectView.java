@@ -2,52 +2,89 @@ package view;
 
 import lombok.Getter;
 import lombok.Setter;
+import model.workspace.Presentation;
 import model.workspace.Project;
+import model.workspace.RuNode;
+import observer.ISubscriber;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.net.ProxySelector;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
 
-public class ProjectView extends JPanel {
+public class ProjectView extends JPanel implements ISubscriber {
   private Project project;
 
-  private TextArea textArea;
-  private PresentationView presentationView;
+  private JLabel jLabel;
 
-  public ProjectView(Project project) {
-    this.project = project;
+  private JTabbedPane jTabbedPane;
+
+  public ProjectView() {
+    this.project = null;
     initialize();
     addElements();
   }
 
-  public ProjectView() {}
+  public ProjectView(Project project) {
+    this.project = project;
+    if (this.project != null) {
+      this.project.addSubscriber(this);
+    }
+    initialize();
+    addElements();
+  }
+
+  public void setProject(Project project) {
+    this.project = project;
+    if (this.project != null) {
+      this.project.addSubscriber(this);
+    }
+  }
 
   private void initialize() {
-    presentationView = new PresentationView();
-    textArea = new TextArea();
+    jTabbedPane = new JTabbedPane();
+    jTabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT); //JTabbedPane.WRAP_TAB_LAYOUT
 
-    setBackground(Color.LIGHT_GRAY);
+    jLabel = new JLabel();
+    jLabel.setFont(new Font("Times New Roman", Font.BOLD, 22));
+    jLabel.setForeground(Color.BLACK);
+    jLabel.setBorder(new EmptyBorder(0, 15, 0, 0));
+
+    setBackground(Color.ORANGE);
     setMinimumSize(new Dimension(300, 300));
 
-    BoxLayout boxLayout = new BoxLayout()
     setLayout(new BorderLayout());
   }
 
   private void addElements() {
-    JPanel textPanel = new JPanel();
-    BoxLayout boxLayout = new BoxLayout(textPanel, BoxLayout.X_AXIS);
+    add(jLabel, BorderLayout.NORTH);
+    add(jTabbedPane, BorderLayout.CENTER);
+  }
 
-    textArea.setText(project.toString());
-    textArea.setEditable(false);
-    textArea.setFont(new Font("Times New Roman", Font.BOLD, 22));
+  @Override
+  public void update(Object notification) {
+    if (notification == "ResetProject") {
+      jLabel.setText("");
+      jTabbedPane.removeAll();
+      return;
+    }
 
-    textPanel.add(textArea);
-    textPanel.setBorder(new EmptyBorder(25, 10, 10, 10));
+    if (this.project == null) {
+      jLabel.setText("");
+    } else {
+      jLabel.setText(this.project.toString());
+    }
 
-    add(textPanel, BorderLayout.NORTH);
-    add(presentationView, BorderLayout.CENTER);
+    jTabbedPane.removeAll();
+    for (RuNode item : project.getChildren()) {
+      PresentationView presentationView = new PresentationView((Presentation) item);
+      jTabbedPane.add(item.getName(), presentationView);
+    }
   }
 }

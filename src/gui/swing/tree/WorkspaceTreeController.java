@@ -19,17 +19,9 @@ public class WorkspaceTreeController implements TreeSelectionListener {
       RuNode ruNode = myTreeNode.getRuNode();
 
       if (ruNode instanceof Project) {
-        ProjectView currentProjectView = myTreeNode.getProjectView();
-        MainFrame.getInstance().setCurrentSelectedProjectView(currentProjectView);
-        System.out.println(MainFrame.getInstance().getCurrentSelectedProjectView());
-        MainFrame.getInstance().getCardLayout().show(
-                MainFrame.getInstance().getRightPanel(), "" + currentProjectView.getProject().getSerialNumber());
+        MainFrame.getInstance().getProjectView().setProject((Project) ruNode);
+        ((Project) ruNode).notifySubscribers(this);
       }
-
-      /*System.out.println("Selektovan dijagram:" + myTreeNode.getRuNode());
-      System.out.println("getPath: " + e.getPath());
-      System.out.println("getPath: " + e.getNewLeadSelectionPath());
-      System.out.println("getName: " + myTreeNode.getRuNode().getName());*/
     }
   }
 }

@@ -25,16 +25,17 @@ public class RemoveProjectAction extends AbstractRudokAction {
 
     RuNode ruNode = myTreeNode.getRuNode();
 
-    if (!(ruNode instanceof Workspace)) {
-      ((RuNodeComposite) ruNode.getParent()).removeChild(ruNode);
-    }
-
-    if (!(ruNode instanceof Workspace)) {
-      MainFrame.getInstance().getWorkspaceTree().removeProject(myTreeNode);
-    }
-
     if (ruNode instanceof Project) {
-      MainFrame.getInstance().removeProjectView(MainFrame.getInstance().getCurrentSelectedProjectView());
+      ((Project) ruNode).notifySubscribers("ResetProject");
+      ((RuNodeComposite) ruNode.getParent()).removeChild(ruNode);
+      MainFrame.getInstance().getWorkspaceTree().removeProject(myTreeNode);
+    } else if (ruNode instanceof Presentation) {
+      ((RuNodeComposite) ruNode.getParent()).removeChild(ruNode);
+      MainFrame.getInstance().getWorkspaceTree().removeProject(myTreeNode);
+      ((Project) ruNode.getParent()).notifySubscribers(this);
+    } else if (ruNode instanceof Slide) {
+      ((RuNodeComposite) ruNode.getParent()).removeChild(ruNode);
+      MainFrame.getInstance().getWorkspaceTree().removeProject(myTreeNode);
     }
   }
 }

@@ -30,33 +30,35 @@ public class NewProjectAction extends AbstractRudokAction {
     int size = myTreeNode.getChildCount();
 
     if (parent instanceof Workspace) {
-      Project project = new Project(parent, "Project");
+      Project project = new Project(parent);
       project.setSerialNumber(++Project.projectCounter);
-      MyTreeNode newNode = new MyTreeNode(project);
-
-      ProjectView projectView = new ProjectView(project);
-      MainFrame.getInstance().addProjectView(projectView);
-      newNode.setProjectView(projectView);
+      project.setName("Project " + project.getSerialNumber());
 
       ((Workspace) parent).addChild(project);
 
+      MyTreeNode newNode = new MyTreeNode(project);
       newNode.setParent(myTreeNode);
-      MainFrame.getInstance().getWorkspaceTree().addProject(newNode);
-    } else if (parent instanceof Project) {
-      RuNode presentation = new Presentation(parent, "Presentation " + (size + 1));
-      MyTreeNode node = new MyTreeNode(presentation);
 
+      MainFrame.getInstance().getWorkspaceTree().addProject(newNode);
+    }
+    else if (parent instanceof Project) {
+      RuNode presentation = new Presentation(parent, "Presentation " + (size + 1));
       ((Project) parent).addChild(presentation);
 
+      MyTreeNode node = new MyTreeNode(presentation);
       node.setParent(myTreeNode);
-      MainFrame.getInstance().getWorkspaceTree().addProject(node);
-    } else if (parent instanceof Presentation) {
-      RuNode slide = new Slide(parent, "Slide " + (size + 1));
-      MyTreeNode node = new MyTreeNode(slide);
 
+      MainFrame.getInstance().getWorkspaceTree().addProject(node);
+
+      ((Project) parent).notifySubscribers(this);
+    }
+    else if (parent instanceof Presentation) {
+      RuNode slide = new Slide(parent, "Slide " + (size + 1));
       ((Presentation) parent).addChild(slide);
 
+      MyTreeNode node = new MyTreeNode(slide);
       node.setParent(myTreeNode);
+
       MainFrame.getInstance().getWorkspaceTree().addProject(node);
     }
   }

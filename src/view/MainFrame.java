@@ -7,11 +7,8 @@ import gui.swing.tree.WorkspaceTree;
 import lombok.Getter;
 import gui.swing.tree.WorkspaceModel;
 import lombok.Setter;
-
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
@@ -21,17 +18,13 @@ public class MainFrame extends JFrame {
 
   private ActionManager actionManager;
 
-  private JPanel rightPanel;
-  private CardLayout cardLayout;
+  private ProjectView projectView;
 
   private WorkspaceTree workspaceTree;
   private WorkspaceModel workspaceModel;
 
   private Toolbar toolbar;
   private Menu menu;
-
-  private List<ProjectView> projectViews = new ArrayList<>();
-  private ProjectView currentSelectedProjectView;
 
   private MainFrame() {}
 
@@ -43,9 +36,7 @@ public class MainFrame extends JFrame {
 
   private void initializeGUI() {
     actionManager = new ActionManager();
-    rightPanel = new JPanel();
-    cardLayout = new CardLayout();
-    currentSelectedProjectView = new ProjectView();
+    projectView = new ProjectView();
 
     // MainFrame size
     Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -73,12 +64,9 @@ public class MainFrame extends JFrame {
             JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     jScrollPane.setMinimumSize(new Dimension(100, 300));
 
-    JSplitPane jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, jScrollPane, rightPanel);
+    JSplitPane jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, jScrollPane, projectView);
     jSplitPane.setOneTouchExpandable(true);
     jSplitPane.setDividerLocation(200);
-
-    //RightPanel
-    rightPanel.setLayout(cardLayout);
 
     add(jSplitPane, BorderLayout.CENTER);
   }
@@ -87,16 +75,6 @@ public class MainFrame extends JFrame {
     workspaceTree = new WorkspaceTree();
     workspaceModel = new WorkspaceModel();
     workspaceTree.setModel(workspaceModel);
-  }
-
-  public void addProjectView(ProjectView projectView) {
-    projectViews.add(projectView);
-    rightPanel.add(projectView, "" + projectView.getProject().getSerialNumber());
-  }
-
-  public void removeProjectView(ProjectView projectView) {
-    projectViews.remove(projectView);
-    rightPanel.remove(projectView);
   }
 
   public static MainFrame getInstance() {
