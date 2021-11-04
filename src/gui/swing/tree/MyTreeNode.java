@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import model.workspace.RuNode;
 import model.workspace.RuNodeComposite;
+import view.ProjectView;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeNode;
@@ -17,6 +18,7 @@ import java.util.List;
 public class MyTreeNode extends DefaultMutableTreeNode {
   private RuNode ruNode;
   private MyTreeNode parent;
+  private ProjectView projectView = null;
 
   private List<MyTreeNode> projects = new ArrayList<>();
 

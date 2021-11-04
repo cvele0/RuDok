@@ -6,17 +6,23 @@ import gui.swing.Toolbar;
 import gui.swing.tree.WorkspaceTree;
 import lombok.Getter;
 import gui.swing.tree.WorkspaceModel;
+import lombok.Setter;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
+@Setter
 
 public class MainFrame extends JFrame {
   private static MainFrame instance = null;
 
   private ActionManager actionManager;
-  private ProjectView projectView;
+
+  private JPanel rightPanel;
+  private CardLayout cardLayout;
 
   private WorkspaceTree workspaceTree;
   private WorkspaceModel workspaceModel;
@@ -24,40 +30,55 @@ public class MainFrame extends JFrame {
   private Toolbar toolbar;
   private Menu menu;
 
+  private List<ProjectView> projectViews = new ArrayList<>();
+  private ProjectView currentSelectedProjectView;
+
   private MainFrame() {}
 
   private void initialize() {
     initializeWorkspaceTree();
     initializeGUI();
+    addElements();
   }
 
   private void initializeGUI() {
     actionManager = new ActionManager();
-    projectView = new ProjectView();
+    rightPanel = new JPanel();
+    cardLayout = new CardLayout();
+    currentSelectedProjectView = new ProjectView();
 
+    // MainFrame size
     Toolkit toolkit = Toolkit.getDefaultToolkit();
     Dimension screenSize = toolkit.getScreenSize();
     int screenHeight = screenSize.height;
     int screenWidth = screenSize.width;
 
+    //MainFrame specifications
     setSize(screenWidth / 2, screenHeight / 2);
     Image image = toolkit.getImage("src/images/icon.png");
     setIconImage(image);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setTitle("Rudok");
+  }
 
+  private void addElements() {
+    //Toolbar and Menu
     menu = new Menu();
     setJMenuBar(menu);
-
     toolbar = new Toolbar();
     add(toolbar, BorderLayout.NORTH);
 
-    JScrollPane jScrollPane = new JScrollPane(workspaceTree, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+    // Elements
+    JScrollPane jScrollPane = new JScrollPane(workspaceTree,
+            JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     jScrollPane.setMinimumSize(new Dimension(100, 300));
 
-    JSplitPane jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, jScrollPane, projectView);
+    JSplitPane jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, jScrollPane, rightPanel);
     jSplitPane.setOneTouchExpandable(true);
     jSplitPane.setDividerLocation(200);
+
+    //RightPanel
+    rightPanel.setLayout(cardLayout);
 
     add(jSplitPane, BorderLayout.CENTER);
   }
@@ -66,6 +87,16 @@ public class MainFrame extends JFrame {
     workspaceTree = new WorkspaceTree();
     workspaceModel = new WorkspaceModel();
     workspaceTree.setModel(workspaceModel);
+  }
+
+  public void addProjectView(ProjectView projectView) {
+    projectViews.add(projectView);
+    rightPanel.add(projectView, "" + projectView.getProject().getSerialNumber());
+  }
+
+  public void removeProjectView(ProjectView projectView) {
+    projectViews.remove(projectView);
+    rightPanel.remove(projectView);
   }
 
   public static MainFrame getInstance() {

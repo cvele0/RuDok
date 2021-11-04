@@ -4,6 +4,7 @@ import gui.swing.tree.MyTreeNode;
 import gui.swing.tree.WorkspaceModel;
 import model.workspace.*;
 import view.MainFrame;
+import view.ProjectView;
 
 import javax.swing.*;
 import javax.swing.tree.TreeNode;
@@ -29,18 +30,32 @@ public class NewProjectAction extends AbstractRudokAction {
     int size = myTreeNode.getChildCount();
 
     if (parent instanceof Workspace) {
-      RuNode project = new Project(parent, "Project " + (size + 1));
-      MyTreeNode node = new MyTreeNode(project);
-      node.setParent(myTreeNode);
-      MainFrame.getInstance().getWorkspaceTree().addProject(node);
+      Project project = new Project(parent, "Project");
+      project.setSerialNumber(++Project.projectCounter);
+      MyTreeNode newNode = new MyTreeNode(project);
+
+      ProjectView projectView = new ProjectView(project);
+      MainFrame.getInstance().addProjectView(projectView);
+      newNode.setProjectView(projectView);
+
+      ((Workspace) parent).addChild(project);
+
+      newNode.setParent(myTreeNode);
+      MainFrame.getInstance().getWorkspaceTree().addProject(newNode);
     } else if (parent instanceof Project) {
       RuNode presentation = new Presentation(parent, "Presentation " + (size + 1));
       MyTreeNode node = new MyTreeNode(presentation);
+
+      ((Project) parent).addChild(presentation);
+
       node.setParent(myTreeNode);
       MainFrame.getInstance().getWorkspaceTree().addProject(node);
     } else if (parent instanceof Presentation) {
       RuNode slide = new Slide(parent, "Slide " + (size + 1));
       MyTreeNode node = new MyTreeNode(slide);
+
+      ((Presentation) parent).addChild(slide);
+
       node.setParent(myTreeNode);
       MainFrame.getInstance().getWorkspaceTree().addProject(node);
     }

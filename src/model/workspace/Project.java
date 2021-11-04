@@ -7,8 +7,16 @@ import lombok.Setter;
 @Setter
 
 public class Project extends RuNodeComposite {
+  public static int projectCounter = 0;
+  private int serialNumber;
+
   public Project(RuNode parent, String name) {
     super(parent, name);
+  }
+
+  @Override
+  public String toString() {
+    return getName() + " " + getSerialNumber();
   }
 
   @Override
