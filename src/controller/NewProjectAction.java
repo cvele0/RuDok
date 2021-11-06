@@ -42,15 +42,13 @@ public class NewProjectAction extends AbstractRudokAction {
       MainFrame.getInstance().getWorkspaceTree().addProject(newNode);
     }
     else if (parent instanceof Project) {
-      RuNode presentation = new Presentation(parent, "Presentation " + (size + 1));
+      Presentation presentation = new Presentation(parent, "Presentation " + (size + 1));
       ((Project) parent).addChild(presentation);
 
       MyTreeNode node = new MyTreeNode(presentation);
       node.setParent(myTreeNode);
 
       MainFrame.getInstance().getWorkspaceTree().addProject(node);
-
-      ((Project) parent).notifySubscribers(this);
     }
     else if (parent instanceof Presentation) {
       RuNode slide = new Slide(parent, "Slide " + (size + 1));
@@ -58,8 +56,12 @@ public class NewProjectAction extends AbstractRudokAction {
 
       MyTreeNode node = new MyTreeNode(slide);
       node.setParent(myTreeNode);
-
       MainFrame.getInstance().getWorkspaceTree().addProject(node);
+
+      MainFrame.getInstance().refresh();
+
+      //int indexOfSelected = ((Project) parent.getParent()).getChildren().indexOf(parent);
+      //MainFrame.getInstance().getProjectView().getJTabbedPane().setSelectedIndex(indexOfSelected);
     }
   }
 }

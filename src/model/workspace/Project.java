@@ -34,8 +34,7 @@ public class Project extends RuNodeComposite implements IPublisher {
   public void addChild(RuNode ruNode) {
     if (ruNode instanceof Presentation) {
       getChildren().add(ruNode);
-    } else {
-      //TODO throw an error
+      notifySubscribers(this);
     }
   }
 
@@ -43,8 +42,7 @@ public class Project extends RuNodeComposite implements IPublisher {
   public void removeChild(RuNode ruNode) {
     if (ruNode instanceof Presentation) {
       getChildren().remove(ruNode);
-    } else {
-      //TODO throw an error
+      notifySubscribers(this);
     }
   }
 

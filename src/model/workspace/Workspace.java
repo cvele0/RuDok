@@ -9,8 +9,6 @@ public class Workspace extends RuNodeComposite {
   public void addChild(RuNode ruNode) {
     if (ruNode instanceof Project) {
       getChildren().add(ruNode);
-    } else {
-      //TODO throw an error
     }
   }
 
@@ -18,8 +16,6 @@ public class Workspace extends RuNodeComposite {
   public void removeChild(RuNode ruNode) {
     if (ruNode instanceof Project) {
       getChildren().remove(ruNode);
-    } else {
-      //TODO throw an error
     }
   }
 }

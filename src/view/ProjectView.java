@@ -8,12 +8,8 @@ import model.workspace.RuNode;
 import observer.ISubscriber;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.net.ProxySelector;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
@@ -25,10 +21,13 @@ public class ProjectView extends JPanel implements ISubscriber {
 
   private JTabbedPane jTabbedPane;
 
+  private PresentationView presentationView;
+
   public ProjectView() {
     this.project = null;
     initialize();
     addElements();
+    update(this);
   }
 
   public ProjectView(Project project) {
@@ -38,17 +37,24 @@ public class ProjectView extends JPanel implements ISubscriber {
     }
     initialize();
     addElements();
+    update(this);
   }
 
   public void setProject(Project project) {
+    if (this.project != null) {
+      this.project.getSubscribers().remove(this);
+    }
     this.project = project;
     if (this.project != null) {
       this.project.addSubscriber(this);
     }
+    update(this);
   }
 
   private void initialize() {
+    presentationView = new PresentationView();
     jTabbedPane = new JTabbedPane();
+
     jTabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT); //JTabbedPane.WRAP_TAB_LAYOUT
 
     jLabel = new JLabel();
@@ -69,11 +75,11 @@ public class ProjectView extends JPanel implements ISubscriber {
 
   @Override
   public void update(Object notification) {
-    if (notification == "ResetProject") {
+    /*if (notification == "ResetProject") {
       jLabel.setText("");
       jTabbedPane.removeAll();
       return;
-    }
+    }*/
 
     if (this.project == null) {
       jLabel.setText("");
@@ -82,9 +88,16 @@ public class ProjectView extends JPanel implements ISubscriber {
     }
 
     jTabbedPane.removeAll();
-    for (RuNode item : project.getChildren()) {
-      PresentationView presentationView = new PresentationView((Presentation) item);
-      jTabbedPane.add(item.getName(), presentationView);
+    if (this.project != null) {
+      for (RuNode item : this.project.getChildren()) {
+        PresentationView presentationView = new PresentationView((Presentation) item);
+        jTabbedPane.addTab(item.getName(), presentationView);
+      }
+    }
+    Presentation lastSelected = MainFrame.getInstance().getLastSelectedPresentation();
+    if (lastSelected != null) {
+      int indexOfSelected = ((Project) lastSelected.getParent()).getChildren().indexOf(lastSelected);
+      MainFrame.getInstance().getProjectView().getJTabbedPane().setSelectedIndex(indexOfSelected);
     }
   }
 }

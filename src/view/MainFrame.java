@@ -7,6 +7,10 @@ import gui.swing.tree.WorkspaceTree;
 import lombok.Getter;
 import gui.swing.tree.WorkspaceModel;
 import lombok.Setter;
+import model.workspace.Presentation;
+import model.workspace.Project;
+import model.workspace.Slide;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -22,6 +26,10 @@ public class MainFrame extends JFrame {
 
   private WorkspaceTree workspaceTree;
   private WorkspaceModel workspaceModel;
+
+  private Project lastSelectedProject = null;
+  private Presentation lastSelectedPresentation = null;
+  private Slide lastSelectedSlide = null;
 
   private Toolbar toolbar;
   private Menu menu;
@@ -83,5 +91,31 @@ public class MainFrame extends JFrame {
       instance.initialize();
     }
     return instance;
+  }
+
+  public void setLastSelectedProject(Project lastSelectedProject) {
+    this.lastSelectedProject = lastSelectedProject;
+    this.lastSelectedPresentation = null;
+    this.lastSelectedSlide = null;
+    refresh();
+  }
+
+  public void setLastSelectedPresentation(Presentation lastSelectedPresentation) {
+    this.lastSelectedPresentation = lastSelectedPresentation;
+    this.lastSelectedProject = (Project) this.lastSelectedPresentation.getParent();
+    this.lastSelectedSlide = null;
+    refresh();
+  }
+
+  public void setLastSelectedSlide(Slide lastSelectedSlide) {
+    this.lastSelectedSlide = lastSelectedSlide;
+    this.lastSelectedPresentation = (Presentation) this.lastSelectedSlide.getParent();
+    this.lastSelectedProject = (Project) this.lastSelectedPresentation.getParent();
+    refresh();
+  }
+
+  public void refresh() {
+    this.getProjectView().setProject(lastSelectedProject);
+    this.getProjectView().getPresentationView().setPresentation(lastSelectedPresentation);
   }
 }

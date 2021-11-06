@@ -1,6 +1,7 @@
 package gui.swing.tree;
 
 import model.workspace.RuNode;
+import view.MainFrame;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellEditor;
@@ -41,5 +42,6 @@ public class WorkspaceTreeCellEditor extends DefaultTreeCellEditor implements Ac
   public void actionPerformed(ActionEvent e) {
     RuNode ruNode = ((MyTreeNode) stavka).getRuNode();
     ruNode.setName(e.getActionCommand());
+    MainFrame.getInstance().refresh();
   }
 }

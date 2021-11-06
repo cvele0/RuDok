@@ -15,7 +15,7 @@ import java.util.List;
 @Setter
 
 public class Presentation extends RuNodeComposite implements IPublisher {
-  private String authorName;
+  private String authorName = "Unknown";
   private URL imageURL;
 
   private List<ISubscriber> subscribers;
@@ -28,8 +28,7 @@ public class Presentation extends RuNodeComposite implements IPublisher {
   public void addChild(RuNode ruNode) {
     if (ruNode instanceof Slide) {
       getChildren().add(ruNode);
-    } else {
-      //TODO throw an error
+      notifySubscribers(this);
     }
   }
 
@@ -37,25 +36,7 @@ public class Presentation extends RuNodeComposite implements IPublisher {
   public void removeChild(RuNode ruNode) {
     if (ruNode instanceof Slide) {
       getChildren().remove(ruNode);
-    } else {
-      //TODO throw an error
-    }
-  }
-
-  class ImagePanel extends JPanel {
-    private Image img;
-
-    public ImagePanel(String img) {
-      this(new ImageIcon(img).getImage());
-    }
-
-    public ImagePanel(Image img) {
-      this.img = img;
-    }
-
-    public void paintComponent(Graphics g) {
-      g.drawImage(img, (int) (this.getSize().getWidth() - img.getWidth(null)) / 2,
-              (int) (this.getSize().getHeight() - img.getHeight(null)) / 2, null);
+      notifySubscribers(this);
     }
   }
 

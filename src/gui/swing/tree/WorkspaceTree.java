@@ -11,10 +11,6 @@ public class WorkspaceTree extends JTree {
     setEditable(true);
   }
 
-  /**
-   * Metoda za dodavanje novog projekta u workspace
-   * @param project
-   */
   public void addProject(MyTreeNode myTreeNode) {
     ((WorkspaceModel) getModel()).addProject(myTreeNode);
     SwingUtilities.updateComponentTreeUI(this);
