@@ -24,6 +24,8 @@ public class PresentationView extends JPanel implements ISubscriber {
   private JPanel jPanel;
   private JLabel jLabel;
 
+  private JScrollPane jScrollPane;
+
   private BoxLayout boxLayout;
 
   public PresentationView() {
@@ -58,22 +60,24 @@ public class PresentationView extends JPanel implements ISubscriber {
     jLabel = new JLabel();
     jPanel = new JPanel();
 
-    boxLayout = new BoxLayout(jPanel, BoxLayout.Y_AXIS);
+    boxLayout = new BoxLayout(jPanel, BoxLayout.PAGE_AXIS);
     jPanel.setLayout(boxLayout);
 
-    if (this.presentation != null) {
-      jLabel.setText("Author: " + this.presentation.getAuthorName());
-    }
+    jPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+    jScrollPane = new JScrollPane(jPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+            JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
     jLabel.setFont(new Font("Times New Roman", Font.BOLD, 22));
     jLabel.setForeground(Color.BLUE);
-    jLabel.setBorder(new EmptyBorder(0, 10, 0, 0));
+    jLabel.setBorder(new EmptyBorder(10, 10, 10, 0));
 
     setLayout(new BorderLayout());
   }
 
   private void addElements() {
     add(jLabel, BorderLayout.NORTH);
-    add(jPanel, BorderLayout.CENTER);
+    add(jScrollPane, BorderLayout.CENTER);
   }
 
   @Override
@@ -90,7 +94,7 @@ public class PresentationView extends JPanel implements ISubscriber {
         slideViewList.add(slideView);
 
         jPanel.add(slideView);
-        jPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+        jPanel.add(Box.createVerticalStrut(30));
       }
     }
   }

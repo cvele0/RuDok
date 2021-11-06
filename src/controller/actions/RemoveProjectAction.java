@@ -1,4 +1,4 @@
-package controller;
+package controller.actions;
 
 import gui.swing.tree.MyTreeNode;
 import model.workspace.*;

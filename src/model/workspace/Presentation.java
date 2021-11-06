@@ -24,6 +24,11 @@ public class Presentation extends RuNodeComposite implements IPublisher {
     super(parent, name);
   }
 
+  public void setAuthorName(String authorName) {
+    this.authorName = authorName;
+    notifySubscribers(this);
+  }
+
   @Override
   public void addChild(RuNode ruNode) {
     if (ruNode instanceof Slide) {

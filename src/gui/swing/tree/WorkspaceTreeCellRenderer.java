@@ -9,7 +9,6 @@ import java.net.URL;
 
 public class WorkspaceTreeCellRenderer extends DefaultTreeCellRenderer {
   public WorkspaceTreeCellRenderer() {
-    // TODO Auto-generated constructor stub
   }
 
   public Component getTreeCellRendererComponent(

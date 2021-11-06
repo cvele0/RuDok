@@ -5,9 +5,12 @@ import observer.ISubscriber;
 
 import javax.swing.*;
 import java.awt.*;
+import java.net.URL;
 
 public class SlideView extends JPanel implements ISubscriber {
   private Slide slide;
+
+  private JLabel jLabel;
 
   public SlideView() {
     this.slide = null;
@@ -36,22 +39,32 @@ public class SlideView extends JPanel implements ISubscriber {
   }
 
   private void initialize() {
+    jLabel = new JLabel();
+
     setBackground(Color.RED);
-    setSize(new Dimension(50, 50));
-    setMaximumSize(new Dimension(50, 50));
+    setPreferredSize(new Dimension(250, 250));
+    setMaximumSize(new Dimension(250, 250));
+    setLayout(new BorderLayout());
+
+    jLabel.setPreferredSize(new Dimension(250, 250));
+    jLabel.setMaximumSize(new Dimension(250, 250));
+
+    add(jLabel, BorderLayout.CENTER);
   }
 
   @Override
   public void update(Object notification) {
-    /*removeAll();
-    if (presentation != null) {
-      elementViewList.clear();
-      for (RuNode item : presentation.getChildren()) {
-        ElementView elementView = new ElementView((Slide) item);
-        elementViewList.add(elementView);
-        add(elementView);
-        add(Box.createRigidArea(new Dimension(5, 0)));
-      }
-    }*/
+    removeAll();
+
+    URL imageURL = getClass().getResource("images/japan.jpg");
+
+    ImageIcon imageIcon = null;
+    if (imageURL != null) {
+      imageIcon = new ImageIcon(imageURL);
+    } else {
+      System.err.println("Greska");
+    }
+    jLabel.setIcon(imageIcon);
+    add(jLabel, BorderLayout.CENTER);
   }
 }

@@ -1,13 +1,10 @@
-package controller;
+package controller.actions;
 
 import gui.swing.tree.MyTreeNode;
-import gui.swing.tree.WorkspaceModel;
 import model.workspace.*;
 import view.MainFrame;
-import view.ProjectView;
 
 import javax.swing.*;
-import javax.swing.tree.TreeNode;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;

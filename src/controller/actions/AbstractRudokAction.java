@@ -1,4 +1,4 @@
-package controller;
+package controller.actions;
 
 import javax.swing.*;
 import java.net.URL;

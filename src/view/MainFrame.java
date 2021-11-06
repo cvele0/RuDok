@@ -1,6 +1,6 @@
 package view;
 
-import controller.ActionManager;
+import controller.actions.ActionManager;
 import gui.swing.Menu;
 import gui.swing.Toolbar;
 import gui.swing.tree.WorkspaceTree;

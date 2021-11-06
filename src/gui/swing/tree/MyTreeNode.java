@@ -42,7 +42,6 @@ public class MyTreeNode extends DefaultMutableTreeNode {
 
   @Override
   public TreeNode getParent() {
-    // TODO Auto-generated method stub
     return parent;
   }
 
@@ -53,7 +52,6 @@ public class MyTreeNode extends DefaultMutableTreeNode {
 
   @Override
   public Enumeration<TreeNode> children() {
-    // TODO Auto-generated method stub
     return (Enumeration<TreeNode>) projects;
   }
 

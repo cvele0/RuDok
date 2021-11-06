@@ -60,7 +60,7 @@ public class ProjectView extends JPanel implements ISubscriber {
     jLabel = new JLabel();
     jLabel.setFont(new Font("Times New Roman", Font.BOLD, 22));
     jLabel.setForeground(Color.BLACK);
-    jLabel.setBorder(new EmptyBorder(0, 15, 0, 0));
+    jLabel.setBorder(new EmptyBorder(5, 15, 5, 0));
 
     setBackground(Color.ORANGE);
     setMinimumSize(new Dimension(300, 300));
