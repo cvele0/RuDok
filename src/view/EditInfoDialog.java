@@ -1,6 +1,7 @@
 package view;
 
 import controller.edit.ChangeAuthorName;
+import controller.edit.ChangeBackground;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -41,5 +42,8 @@ public class EditInfoDialog extends JDialog {
     add(changeBackground3);
 
     changeAuthorNameBtn.addActionListener(new ChangeAuthorName());
+    changeBackground1.addActionListener(new ChangeBackground(this));
+    changeBackground2.addActionListener(new ChangeBackground(this));
+    changeBackground3.addActionListener(new ChangeBackground(this));
   }
 }
