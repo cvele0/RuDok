@@ -69,7 +69,7 @@ public class PresentationView extends JPanel implements ISubscriber {
             JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
     jLabel.setFont(new Font("Times New Roman", Font.BOLD, 22));
-    jLabel.setForeground(Color.BLUE);
+    jLabel.setForeground(new Color(51, 84, 255));
     jLabel.setBorder(new EmptyBorder(10, 10, 10, 0));
 
     setLayout(new BorderLayout());

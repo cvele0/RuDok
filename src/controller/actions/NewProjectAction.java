@@ -1,5 +1,6 @@
 package controller.actions;
 
+import error.ErrorFactory;
 import gui.swing.tree.MyTreeNode;
 import model.workspace.*;
 import view.MainFrame;
@@ -19,6 +20,7 @@ public class NewProjectAction extends AbstractRudokAction {
 
   @Override
   public void actionPerformed(ActionEvent e) {
+
     MyTreeNode myTreeNode = (MyTreeNode) MainFrame.getInstance().getWorkspaceTree().getLastSelectedPathComponent();
 
     if (myTreeNode == null) return;
@@ -56,9 +58,6 @@ public class NewProjectAction extends AbstractRudokAction {
       MainFrame.getInstance().getWorkspaceTree().addProject(node);
 
       MainFrame.getInstance().refresh();
-
-      //int indexOfSelected = ((Project) parent.getParent()).getChildren().indexOf(parent);
-      //MainFrame.getInstance().getProjectView().getJTabbedPane().setSelectedIndex(indexOfSelected);
     }
   }
 }

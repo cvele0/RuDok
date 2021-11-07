@@ -58,11 +58,15 @@ public class ProjectView extends JPanel implements ISubscriber {
     jTabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT); //JTabbedPane.WRAP_TAB_LAYOUT
 
     jLabel = new JLabel();
-    jLabel.setFont(new Font("Times New Roman", Font.BOLD, 22));
+    jLabel.setPreferredSize(new Dimension(20, 45));
+    jLabel.setFont(new Font("Times New Roman", Font.BOLD, 25));
     jLabel.setForeground(Color.BLACK);
+    //jLabel.setForeground(Color.WHITE);
     jLabel.setBorder(new EmptyBorder(5, 15, 5, 0));
 
-    setBackground(Color.ORANGE);
+    setBackground(new Color(252, 47, 44));
+    //setBackground(new Color(67, 146, 206));
+    //setBackground(new Color(238, 173, 33));
     setMinimumSize(new Dimension(300, 300));
 
     setLayout(new BorderLayout());

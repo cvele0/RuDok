@@ -1,6 +1,8 @@
 package controller.actions;
 
+import error.ErrorFactory;
 import view.EditInfoDialog;
+import view.MainFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,6 +18,11 @@ public class EditInfoAction extends AbstractRudokAction {
 
   @Override
   public void actionPerformed(ActionEvent e) {
+    if (MainFrame.getInstance().getLastSelectedPresentation() == null) {
+      ErrorFactory.getInstance().generateError(this, "Please select a presentation");
+      return;
+    }
+
     EditInfoDialog editInfoDialog = new EditInfoDialog();
     editInfoDialog.setVisible(true);
   }

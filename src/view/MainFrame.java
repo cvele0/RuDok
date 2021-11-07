@@ -1,6 +1,8 @@
 package view;
 
 import controller.actions.ActionManager;
+import error.ErrorFactory;
+import error.MyError;
 import gui.swing.Menu;
 import gui.swing.Toolbar;
 import gui.swing.tree.WorkspaceTree;
@@ -10,6 +12,7 @@ import lombok.Setter;
 import model.workspace.Presentation;
 import model.workspace.Project;
 import model.workspace.Slide;
+import observer.ISubscriber;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +20,7 @@ import java.awt.*;
 @Getter
 @Setter
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements ISubscriber {
   private static MainFrame instance = null;
 
   private ActionManager actionManager;
@@ -27,9 +30,9 @@ public class MainFrame extends JFrame {
   private WorkspaceTree workspaceTree;
   private WorkspaceModel workspaceModel;
 
-  private Project lastSelectedProject = null;
-  private Presentation lastSelectedPresentation = null;
-  private Slide lastSelectedSlide = null;
+  private Project lastSelectedProject;
+  private Presentation lastSelectedPresentation;
+  private Slide lastSelectedSlide;
 
   private Toolbar toolbar;
   private Menu menu;
@@ -37,6 +40,12 @@ public class MainFrame extends JFrame {
   private MainFrame() {}
 
   private void initialize() {
+    lastSelectedProject = null;
+    lastSelectedPresentation = null;
+    lastSelectedSlide = null;
+
+    ErrorFactory.getInstance().addSubscriber(this);
+
     initializeWorkspaceTree();
     initializeGUI();
     addElements();
@@ -117,5 +126,10 @@ public class MainFrame extends JFrame {
   public void refresh() {
     this.getProjectView().setProject(lastSelectedProject);
     this.getProjectView().getPresentationView().setPresentation(lastSelectedPresentation);
+  }
+
+  @Override
+  public void update(Object notification) {
+    JOptionPane.showMessageDialog(this, ((MyError) notification).getMessage());
   }
 }
