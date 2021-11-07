@@ -1,5 +1,6 @@
 package gui.swing.tree;
 
+import error.ErrorFactory;
 import model.workspace.RuNode;
 import view.MainFrame;
 
@@ -40,6 +41,11 @@ public class WorkspaceTreeCellEditor extends DefaultTreeCellEditor implements Ac
   }
 
   public void actionPerformed(ActionEvent e) {
+    if (e.getActionCommand().length() == 0) {
+      ErrorFactory.getInstance().generateError(this, "Name cannot be empty");
+      return;
+    }
+
     RuNode ruNode = ((MyTreeNode) stavka).getRuNode();
     ruNode.setName(e.getActionCommand());
     MainFrame.getInstance().refresh();
