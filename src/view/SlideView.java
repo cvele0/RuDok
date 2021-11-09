@@ -1,6 +1,5 @@
 package view;
 
-import error.ErrorFactory;
 import model.workspace.Presentation;
 import model.workspace.Slide;
 import observer.ISubscriber;

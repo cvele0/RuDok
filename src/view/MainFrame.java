@@ -110,22 +110,30 @@ public class MainFrame extends JFrame implements ISubscriber {
   }
 
   public void setLastSelectedPresentation(Presentation lastSelectedPresentation) {
-    this.lastSelectedPresentation = lastSelectedPresentation;
-    this.lastSelectedProject = (Project) this.lastSelectedPresentation.getParent();
-    this.lastSelectedSlide = null;
+    if (lastSelectedPresentation != null) {
+      this.lastSelectedPresentation = lastSelectedPresentation;
+      this.lastSelectedProject = (Project) this.lastSelectedPresentation.getParent();
+      this.lastSelectedSlide = null;
+    } else {
+      this.lastSelectedPresentation = null;
+      this.lastSelectedSlide = null;
+    }
     refresh();
   }
 
   public void setLastSelectedSlide(Slide lastSelectedSlide) {
-    this.lastSelectedSlide = lastSelectedSlide;
-    this.lastSelectedPresentation = (Presentation) this.lastSelectedSlide.getParent();
-    this.lastSelectedProject = (Project) this.lastSelectedPresentation.getParent();
+    if (lastSelectedSlide != null) {
+      this.lastSelectedSlide = lastSelectedSlide;
+      this.lastSelectedPresentation = (Presentation) this.lastSelectedSlide.getParent();
+      this.lastSelectedProject = (Project) this.lastSelectedPresentation.getParent();
+    } else {
+      this.lastSelectedSlide = null;
+    }
     refresh();
   }
 
   public void refresh() {
     this.getProjectView().setProject(lastSelectedProject);
-    this.getProjectView().getPresentationView().setPresentation(lastSelectedPresentation);
   }
 
   @Override

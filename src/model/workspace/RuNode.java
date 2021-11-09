@@ -2,11 +2,6 @@ package model.workspace;
 
 import lombok.Getter;
 import lombok.Setter;
-import observer.IPublisher;
-import observer.ISubscriber;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter

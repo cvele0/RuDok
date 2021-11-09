@@ -21,8 +21,6 @@ public class ProjectView extends JPanel implements ISubscriber {
 
   private JTabbedPane jTabbedPane;
 
-  private PresentationView presentationView;
-
   public ProjectView() {
     this.project = null;
     initialize();
@@ -52,7 +50,6 @@ public class ProjectView extends JPanel implements ISubscriber {
   }
 
   private void initialize() {
-    presentationView = new PresentationView();
     jTabbedPane = new JTabbedPane();
 
     jTabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT); //JTabbedPane.WRAP_TAB_LAYOUT
@@ -79,12 +76,6 @@ public class ProjectView extends JPanel implements ISubscriber {
 
   @Override
   public void update(Object notification) {
-    /*if (notification == "ResetProject") {
-      jLabel.setText("");
-      jTabbedPane.removeAll();
-      return;
-    }*/
-
     if (this.project == null) {
       jLabel.setText("");
     } else {

@@ -1,6 +1,5 @@
 package controller.actions;
 
-import error.ErrorFactory;
 import gui.swing.tree.MyTreeNode;
 import model.workspace.*;
 import view.MainFrame;
