@@ -32,7 +32,6 @@ public class Presentation extends RuNodeComposite implements IPublisher {
   public void setImageURL(URL imageURL) {
     this.imageURL = imageURL;
     notifySubscribers(this);
-    ((Project) this.getParent()).notifySubscribers(this);
   }
 
   @Override

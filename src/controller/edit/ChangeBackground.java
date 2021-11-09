@@ -31,6 +31,7 @@ public class ChangeBackground implements ActionListener {
 
     if (imageURL != null) {
       MainFrame.getInstance().getLastSelectedPresentation().setImageURL(imageURL);
+      MainFrame.getInstance().refresh();
     }
 
     editInfoDialog.setVisible(false);
