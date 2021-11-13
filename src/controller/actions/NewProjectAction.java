@@ -1,5 +1,6 @@
 package controller.actions;
 
+import error.ErrorFactory;
 import gui.swing.tree.MyTreeNode;
 import model.workspace.*;
 import view.MainFrame;
@@ -22,41 +23,58 @@ public class NewProjectAction extends AbstractRudokAction {
 
     MyTreeNode myTreeNode = (MyTreeNode) MainFrame.getInstance().getWorkspaceTree().getLastSelectedPathComponent();
 
-    if (myTreeNode == null) return;
+    if (myTreeNode == null) {
+      ErrorFactory.getInstance().generateError(this, "Please select a node.");
+      return;
+    }
 
-    RuNode parent = myTreeNode.getRuNode();
+    RuNode ruNode = myTreeNode.getRuNode();
+    if (ruNode instanceof Slide) {
+      ruNode = MainFrame.getInstance().getLastSelectedSlide();
+    } else if (ruNode instanceof Presentation) {
+      ruNode = MainFrame.getInstance().getLastSelectedPresentation();
+    } else if (ruNode instanceof Project) {
+      ruNode = MainFrame.getInstance().getLastSelectedProject();
+    }
+    if (ruNode == null) {
+      ErrorFactory.getInstance().generateError(this, "Please select a node.");
+      return;
+    }
+
     int size = myTreeNode.getChildCount();
 
-    if (parent instanceof Workspace) {
-      Project project = new Project(parent);
+    if (ruNode instanceof Workspace) {
+      Project project = new Project(ruNode);
       project.setSerialNumber(++Project.projectCounter);
       project.setName("Project " + project.getSerialNumber());
 
-      ((Workspace) parent).addChild(project);
+      ((Workspace) ruNode).addChild(project);
 
       MyTreeNode newNode = new MyTreeNode(project);
       newNode.setParent(myTreeNode);
 
       MainFrame.getInstance().getWorkspaceTree().addProject(newNode);
     }
-    else if (parent instanceof Project) {
-      Presentation presentation = new Presentation(parent, "Presentation " + (size + 1));
-      ((Project) parent).addChild(presentation);
+    else if (ruNode instanceof Project) {
+      Presentation presentation = new Presentation(ruNode, "Presentation " + (size + 1));
+      ((Project) ruNode).addChild(presentation);
 
       MyTreeNode node = new MyTreeNode(presentation);
       node.setParent(myTreeNode);
 
       MainFrame.getInstance().getWorkspaceTree().addProject(node);
     }
-    else if (parent instanceof Presentation) {
-      RuNode slide = new Slide(parent, "Slide " + (size + 1));
-      ((Presentation) parent).addChild(slide);
+    else if (ruNode instanceof Presentation) {
+      RuNode slide = new Slide(ruNode, "Slide " + (size + 1));
+      ((Presentation) ruNode).addChild(slide);
 
       MyTreeNode node = new MyTreeNode(slide);
       node.setParent(myTreeNode);
       MainFrame.getInstance().getWorkspaceTree().addProject(node);
 
       MainFrame.getInstance().refresh();
+    } else if (ruNode instanceof Slide) {
+      ErrorFactory.getInstance().generateError(this, "Cannot add any more nodes.");
     }
   }
 }
