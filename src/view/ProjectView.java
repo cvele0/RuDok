@@ -40,7 +40,7 @@ public class ProjectView extends JPanel implements ISubscriber {
 
   public void setProject(Project project) {
     if (this.project != null) {
-      this.project.getSubscribers().remove(this);
+      this.project.removeSubscriber(this);
     }
     this.project = project;
     if (this.project != null) {

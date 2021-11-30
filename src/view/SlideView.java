@@ -33,7 +33,7 @@ public class SlideView extends JPanel implements ISubscriber {
 
   public void setSlide(Slide slide) {
     if (this.slide != null) {
-      this.slide.getSubscribers().remove(this);
+      this.slide.removeSubscriber(this);
     }
     this.slide = slide;
     if (this.slide != null) {

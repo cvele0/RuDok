@@ -43,7 +43,7 @@ public class PresentationView extends JPanel implements ISubscriber {
 
   public void setPresentation(Presentation presentation) {
     if (this.presentation != null) {
-      this.presentation.getSubscribers().remove(this);
+      this.presentation.removeSubscriber(this);
     }
     this.presentation = presentation;
     if (this.presentation != null) {
