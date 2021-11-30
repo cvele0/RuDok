@@ -14,17 +14,13 @@ import java.net.URL;
 
 public class SlideView extends JPanel implements ISubscriber {
   private Slide slide;
-  private int width;
-  private int height;
 
   private JLabel nameLabel;
 
   private JPanel centerPanel;
 
-  public SlideView(Slide slide, int width, int height) {
+  public SlideView(Slide slide) {
     this.slide = slide;
-    this.width = width;
-    this.height = height;
     if (this.slide != null) {
       this.slide.addSubscriber(this);
     }
@@ -48,8 +44,8 @@ public class SlideView extends JPanel implements ISubscriber {
     centerPanel = new JPanel();
 
     centerPanel.setBackground(new Color(236, 149, 62));
-    setPreferredSize(new Dimension(this.width, this.height));
-    setMaximumSize(new Dimension(this.width, this.height));
+    setPreferredSize(new Dimension(400, 300));
+    setMaximumSize(new Dimension(400, 300));
     setLayout(new BorderLayout());
 
     nameLabel.setFont(new Font("Times New Roman", Font.BOLD, 22));
@@ -89,9 +85,9 @@ public class SlideView extends JPanel implements ISubscriber {
     }
 
     public void paintComponent(Graphics g) {
-      g.drawImage(img, (int) (this.getSize().getWidth() - img.getWidth(null)) / 2,
-              (int) (this.getSize().getHeight() - img.getHeight(null)) / 2, null);
-      //g.drawImage(img, 0, 0, null);
+      //g.drawImage(img, (int) (this.getSize().getWidth() - img.getWidth(null)) / 2,
+              //(int) (this.getSize().getHeight() - img.getHeight(null)) / 2, null);
+      g.drawImage(img, 0, 0, getWidth(), getHeight(), null);
     }
   }
 }

@@ -66,7 +66,7 @@ public class SlideshowView extends JPanel {
     buttonPanel.add(Box.createHorizontalGlue());
 
     for (int i = 0; i < this.presentation.getChildren().size(); i++) {
-      SlideView slideView = new SlideView((Slide) this.presentation.getChildren().get(i), 400, 300);
+      SlideView slideView = new SlideView((Slide) this.presentation.getChildren().get(i));
       centerPanel.add(slideView, "slide" + i);
     }
 

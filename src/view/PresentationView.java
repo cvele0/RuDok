@@ -103,7 +103,7 @@ public class PresentationView extends JPanel implements ISubscriber {
     jPanel.removeAll();
     if (this.presentation != null) {
       for (RuNode item : this.presentation.getChildren()) {
-        SlideView slideView = new SlideView((Slide) item, 400, 300);
+        SlideView slideView = new SlideView((Slide) item);
 
         jPanel.add(slideView);
         jPanel.add(Box.createVerticalStrut(30));
@@ -113,10 +113,12 @@ public class PresentationView extends JPanel implements ISubscriber {
     leftPanel.removeAll();
     if (this.presentation != null) {
       for (RuNode item : this.presentation.getChildren()) {
-        SlideView slideView = new SlideView((Slide) item, 100, 75);
+        SlideView slideView = new SlideView((Slide) item);
 
         slideView.getNameLabel().setFont(new Font("Times New Roman", Font.BOLD, 13));
         slideView.getNameLabel().setBorder(new EmptyBorder(0, 2, 0, 0));
+        slideView.setPreferredSize(new Dimension(100, 75));
+        slideView.setMaximumSize(new Dimension(100, 75));
 
         leftPanel.add(slideView);
         leftPanel.add(Box.createVerticalStrut(30));
