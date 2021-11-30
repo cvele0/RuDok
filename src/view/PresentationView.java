@@ -10,16 +10,12 @@ import observer.ISubscriber;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
 
 public class PresentationView extends JPanel implements ISubscriber {
   private Presentation presentation;
-
-  private List<SlideView> slideViewList = new ArrayList<>();
 
   private JPanel jPanel;
   private JLabel jLabel;
@@ -86,12 +82,10 @@ public class PresentationView extends JPanel implements ISubscriber {
       jLabel.setText("Author: " + this.presentation.getAuthorName());
     }
 
-    slideViewList.clear();
     jPanel.removeAll();
     if (this.presentation != null) {
       for (RuNode item : this.presentation.getChildren()) {
         SlideView slideView = new SlideView((Slide) item);
-        slideViewList.add(slideView);
 
         jPanel.add(slideView);
         jPanel.add(Box.createVerticalStrut(30));

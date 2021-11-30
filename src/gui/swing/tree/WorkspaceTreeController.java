@@ -21,15 +21,12 @@ public class WorkspaceTreeController implements TreeSelectionListener {
 
       if (ruNode instanceof Project) {
         MainFrame.getInstance().setLastSelectedProject((Project) ruNode);
-        MainFrame.getInstance().refresh();
         MainFrame.getInstance().getWorkspaceTree().expandPath(path);
       } else if (ruNode instanceof Presentation) {
         MainFrame.getInstance().setLastSelectedPresentation((Presentation) ruNode);
-        MainFrame.getInstance().refresh();
         MainFrame.getInstance().getWorkspaceTree().expandPath(path);
       } else if (ruNode instanceof Slide) {
         MainFrame.getInstance().setLastSelectedSlide((Slide) ruNode);
-        MainFrame.getInstance().refresh();
         MainFrame.getInstance().getWorkspaceTree().expandPath(path);
       }
     }

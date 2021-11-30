@@ -1,6 +1,9 @@
 package controller.actions;
 
+import error.ErrorFactory;
+import state.SlideshowState;
 import view.InfoDialog;
+import view.MainFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,6 +19,10 @@ public class InfoAction extends AbstractRudokAction {
 
   @Override
   public void actionPerformed(ActionEvent e) {
+    if (MainFrame.getInstance().getStateManager().getCurrentState() instanceof SlideshowState) {
+      ErrorFactory.getInstance().generateError(this, "Invalid action in slide show view.");
+      return;
+    }
     InfoDialog infoDialog = new InfoDialog();
     infoDialog.setVisible(true);
   }

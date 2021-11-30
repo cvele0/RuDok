@@ -3,6 +3,7 @@ package controller.actions;
 import error.ErrorFactory;
 import gui.swing.tree.MyTreeNode;
 import model.workspace.*;
+import state.SlideshowState;
 import view.MainFrame;
 
 import javax.swing.*;
@@ -20,6 +21,10 @@ public class NewProjectAction extends AbstractRudokAction {
 
   @Override
   public void actionPerformed(ActionEvent e) {
+    if (MainFrame.getInstance().getStateManager().getCurrentState() instanceof SlideshowState) {
+      ErrorFactory.getInstance().generateError(this, "Invalid action in slide show view.");
+      return;
+    }
 
     MyTreeNode myTreeNode = (MyTreeNode) MainFrame.getInstance().getWorkspaceTree().getLastSelectedPathComponent();
 

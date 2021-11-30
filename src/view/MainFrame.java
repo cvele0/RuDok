@@ -3,8 +3,6 @@ package view;
 import controller.actions.ActionManager;
 import error.ErrorFactory;
 import error.MyError;
-import gui.swing.Menu;
-import gui.swing.Toolbar;
 import gui.swing.tree.WorkspaceTree;
 import lombok.Getter;
 import gui.swing.tree.WorkspaceModel;
@@ -13,6 +11,7 @@ import model.workspace.Presentation;
 import model.workspace.Project;
 import model.workspace.Slide;
 import observer.ISubscriber;
+import state.StateManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,6 +25,8 @@ public class MainFrame extends JFrame implements ISubscriber {
   private ActionManager actionManager;
 
   private ProjectView projectView;
+  private SlideshowView slideshowView;
+  private JSplitPane jSplitPane;
 
   private WorkspaceTree workspaceTree;
   private WorkspaceModel workspaceModel;
@@ -36,6 +37,8 @@ public class MainFrame extends JFrame implements ISubscriber {
 
   private Toolbar toolbar;
   private Menu menu;
+
+  private StateManager stateManager;
 
   private MainFrame() {}
 
@@ -54,6 +57,8 @@ public class MainFrame extends JFrame implements ISubscriber {
   private void initializeGUI() {
     actionManager = new ActionManager();
     projectView = new ProjectView();
+    stateManager = new StateManager();
+    slideshowView = null;
 
     // MainFrame size
     Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -81,11 +86,11 @@ public class MainFrame extends JFrame implements ISubscriber {
             JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     jScrollPane.setMinimumSize(new Dimension(100, 300));
 
-    JSplitPane jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, jScrollPane, projectView);
+    jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, jScrollPane, projectView);
     jSplitPane.setOneTouchExpandable(true);
     jSplitPane.setDividerLocation(200);
 
-    add(jSplitPane, BorderLayout.CENTER);
+    this.getContentPane().add(jSplitPane, BorderLayout.CENTER);
   }
 
   private void initializeWorkspaceTree() {
@@ -139,5 +144,17 @@ public class MainFrame extends JFrame implements ISubscriber {
   @Override
   public void update(Object notification) {
     JOptionPane.showMessageDialog(this, ((MyError) notification).getMessage());
+  }
+
+  public void startEditState() {
+    this.stateManager.setEditState();
+  }
+
+  public void startSlideshowState() {
+    this.stateManager.setSlideshowState();
+  }
+
+  public void showContent() {
+    this.stateManager.getCurrentState().showContent();
   }
 }

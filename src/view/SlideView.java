@@ -12,8 +12,9 @@ import java.net.URL;
 public class SlideView extends JPanel implements ISubscriber {
   private Slide slide;
 
-  private JLabel jLabel;
   private JLabel nameLabel;
+
+  private JPanel centerPanel;
 
   public SlideView() {
     this.slide = null;
@@ -42,49 +43,53 @@ public class SlideView extends JPanel implements ISubscriber {
   }
 
   private void initialize() {
-    jLabel = new JLabel();
     nameLabel = new JLabel();
-    jLabel.setBackground(Color.RED);
+    centerPanel = new JPanel();
 
-    setBackground(new Color(236, 149, 62));
-    setPreferredSize(new Dimension(350, 250));
-    setMaximumSize(new Dimension(350, 250));
+    centerPanel.setBackground(new Color(236, 149, 62));
+    setPreferredSize(new Dimension(400, 300));
+    setMaximumSize(new Dimension(400, 300));
     setLayout(new BorderLayout());
-
-    jLabel.setLayout(new BorderLayout());
-    jLabel.setPreferredSize(new Dimension(350, 250));
-    jLabel.setMaximumSize(new Dimension(350, 250));
 
     nameLabel.setFont(new Font("Times New Roman", Font.BOLD, 22));
     nameLabel.setBorder(new EmptyBorder(0, 10, 0, 0));
-    nameLabel.setForeground(Color.WHITE);
+    nameLabel.setForeground(Color.BLACK);
 
-    jLabel.add(nameLabel, BorderLayout.NORTH);
-    add(jLabel, BorderLayout.CENTER);
+    add(nameLabel, BorderLayout.NORTH);
+    add(centerPanel, BorderLayout.CENTER);
   }
 
   @Override
   public void update(Object notification) {
-    URL imageURL = null;
     if (this.slide != null) {
-      imageURL = ((Presentation) this.slide.getParent()).getImageURL();
-    }
-
-    ImageIcon imageIcon = null;
-    if (imageURL != null) {
-      imageIcon = new ImageIcon(imageURL);
-    }
-
-    jLabel.setIcon(imageIcon);
-    if (imageIcon == null) {
-      jLabel.setText("       ");
-      nameLabel.setText("Default");
-    } else {
-      jLabel.setText("");
       nameLabel.setText(this.slide.getName());
+    } else {
+      nameLabel.setText("Default");
     }
 
     removeAll();
-    add(jLabel, BorderLayout.CENTER);
+    if (((Presentation) this.slide.getParent()).getImageURL() != null) {
+      add(new ImagePanel(((Presentation) this.slide.getParent()).getImageURL()), BorderLayout.CENTER);
+    } else {
+      add(centerPanel, BorderLayout.CENTER);
+    }
+    add(nameLabel, BorderLayout.NORTH);
+  }
+
+  class ImagePanel extends JPanel {
+    private Image img;
+
+    public ImagePanel(URL url) {
+      this(new ImageIcon(url).getImage());
+    }
+
+    public ImagePanel(Image img) {
+      this.img = img;
+    }
+
+    public void paintComponent(Graphics g) {
+      g.drawImage(img, (int) (this.getSize().getWidth() - img.getWidth(null)) / 2,
+              (int) (this.getSize().getHeight() - img.getHeight(null)) / 2, null);
+    }
   }
 }

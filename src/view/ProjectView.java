@@ -51,7 +51,6 @@ public class ProjectView extends JPanel implements ISubscriber {
 
   private void initialize() {
     jTabbedPane = new JTabbedPane();
-
     jTabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT); //JTabbedPane.WRAP_TAB_LAYOUT
 
     jLabel = new JLabel();

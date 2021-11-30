@@ -3,6 +3,7 @@ package controller.actions;
 import error.ErrorFactory;
 import gui.swing.tree.MyTreeNode;
 import model.workspace.*;
+import state.SlideshowState;
 import view.MainFrame;
 
 import javax.swing.*;
@@ -20,6 +21,11 @@ public class RemoveProjectAction extends AbstractRudokAction {
 
   @Override
   public void actionPerformed(ActionEvent e) {
+    if (MainFrame.getInstance().getStateManager().getCurrentState() instanceof SlideshowState) {
+      ErrorFactory.getInstance().generateError(this, "Invalid action in slide show view.");
+      return;
+    }
+
     MyTreeNode myTreeNode = (MyTreeNode) MainFrame.getInstance().getWorkspaceTree().getLastSelectedPathComponent();
 
     if (myTreeNode == null) {
@@ -47,17 +53,14 @@ public class RemoveProjectAction extends AbstractRudokAction {
       ((RuNodeComposite) ruNode.getParent()).removeChild(ruNode);
       MainFrame.getInstance().getWorkspaceTree().removeProject(myTreeNode);
       MainFrame.getInstance().setLastSelectedProject(null);
-      MainFrame.getInstance().refresh();
     } else if (ruNode instanceof Presentation) {
       ((RuNodeComposite) ruNode.getParent()).removeChild(ruNode);
       MainFrame.getInstance().getWorkspaceTree().removeProject(myTreeNode);
       MainFrame.getInstance().setLastSelectedPresentation(null);
-      MainFrame.getInstance().refresh();
     } else if (ruNode instanceof Slide) {
       ((RuNodeComposite) ruNode.getParent()).removeChild(ruNode);
       MainFrame.getInstance().getWorkspaceTree().removeProject(myTreeNode);
       MainFrame.getInstance().setLastSelectedSlide(null);
-      MainFrame.getInstance().refresh();
     }
   }
 }

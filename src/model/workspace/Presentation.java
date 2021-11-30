@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import observer.IPublisher;
 import observer.ISubscriber;
+import view.MainFrame;
 
 import javax.swing.*;
 import java.awt.*;

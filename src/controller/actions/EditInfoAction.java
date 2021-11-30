@@ -1,6 +1,7 @@
 package controller.actions;
 
 import error.ErrorFactory;
+import state.SlideshowState;
 import view.EditInfoDialog;
 import view.MainFrame;
 
@@ -20,6 +21,10 @@ public class EditInfoAction extends AbstractRudokAction {
   public void actionPerformed(ActionEvent e) {
     if (MainFrame.getInstance().getLastSelectedPresentation() == null) {
       ErrorFactory.getInstance().generateError(this, "Please select a presentation");
+      return;
+    }
+    if (MainFrame.getInstance().getStateManager().getCurrentState() instanceof SlideshowState) {
+      ErrorFactory.getInstance().generateError(this, "Invalid action in slide show view.");
       return;
     }
 
