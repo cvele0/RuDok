@@ -19,8 +19,12 @@ public class PresentationView extends JPanel implements ISubscriber {
 
   private JPanel jPanel;
   private JLabel jLabel;
+  private JPanel leftPanel;
 
   private JScrollPane jScrollPane;
+  private JScrollPane leftScroll;
+
+  private JSplitPane jSplitPane;
 
   private BoxLayout boxLayout;
 
@@ -55,10 +59,11 @@ public class PresentationView extends JPanel implements ISubscriber {
   private void initialize() {
     jLabel = new JLabel();
     jPanel = new JPanel();
+    leftPanel = new JPanel();
 
+    // CENTER PANEL
     boxLayout = new BoxLayout(jPanel, BoxLayout.PAGE_AXIS);
     jPanel.setLayout(boxLayout);
-
     jPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
     jScrollPane = new JScrollPane(jPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
@@ -68,12 +73,25 @@ public class PresentationView extends JPanel implements ISubscriber {
     jLabel.setForeground(new Color(51, 84, 255));
     jLabel.setBorder(new EmptyBorder(10, 10, 10, 0));
 
+    // LEFT PANEL
+    BoxLayout boxLayout1 = new BoxLayout(leftPanel, BoxLayout.PAGE_AXIS);
+    leftPanel.setLayout(boxLayout1);
+    leftPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+    leftScroll = new JScrollPane(leftPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+            JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+    jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftScroll, jScrollPane);
+    jSplitPane.setDividerLocation(150);
+    jSplitPane.setEnabled(false);
+    //jSplitPane.setOneTouchExpandable(false);
+
     setLayout(new BorderLayout());
   }
 
   private void addElements() {
     add(jLabel, BorderLayout.NORTH);
-    add(jScrollPane, BorderLayout.CENTER);
+    add(jSplitPane, BorderLayout.CENTER);
   }
 
   @Override
@@ -85,10 +103,23 @@ public class PresentationView extends JPanel implements ISubscriber {
     jPanel.removeAll();
     if (this.presentation != null) {
       for (RuNode item : this.presentation.getChildren()) {
-        SlideView slideView = new SlideView((Slide) item);
+        SlideView slideView = new SlideView((Slide) item, 400, 300);
 
         jPanel.add(slideView);
         jPanel.add(Box.createVerticalStrut(30));
+      }
+    }
+
+    leftPanel.removeAll();
+    if (this.presentation != null) {
+      for (RuNode item : this.presentation.getChildren()) {
+        SlideView slideView = new SlideView((Slide) item, 100, 75);
+
+        slideView.getNameLabel().setFont(new Font("Times New Roman", Font.BOLD, 13));
+        slideView.getNameLabel().setBorder(new EmptyBorder(0, 2, 0, 0));
+
+        leftPanel.add(slideView);
+        leftPanel.add(Box.createVerticalStrut(30));
       }
     }
   }
