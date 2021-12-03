@@ -17,8 +17,6 @@ public class SlideView extends JPanel implements ISubscriber {
 
   private JLabel nameLabel;
 
-  private JPanel centerPanel;
-
   public SlideView(Slide slide) {
     this.slide = slide;
     if (this.slide != null) {
@@ -41,9 +39,8 @@ public class SlideView extends JPanel implements ISubscriber {
 
   private void initialize() {
     nameLabel = new JLabel();
-    centerPanel = new JPanel();
 
-    centerPanel.setBackground(new Color(236, 149, 62));
+    //centerPanel.setBackground(new Color(236, 149, 62));
     setPreferredSize(new Dimension(400, 300));
     setMaximumSize(new Dimension(400, 300));
     setLayout(new BorderLayout());
@@ -51,9 +48,6 @@ public class SlideView extends JPanel implements ISubscriber {
     nameLabel.setFont(new Font("Times New Roman", Font.BOLD, 22));
     nameLabel.setBorder(new EmptyBorder(0, 10, 0, 0));
     nameLabel.setForeground(Color.BLACK);
-
-    add(nameLabel, BorderLayout.NORTH);
-    add(centerPanel, BorderLayout.CENTER);
   }
 
   @Override
@@ -65,28 +59,20 @@ public class SlideView extends JPanel implements ISubscriber {
     }
 
     removeAll();
-    if (((Presentation) this.slide.getParent()).getImageURL() != null) {
-      add(new ImagePanel(((Presentation) this.slide.getParent()).getImageURL()), BorderLayout.CENTER);
-    } else {
-      add(centerPanel, BorderLayout.CENTER);
+    if (this.slide != null) {
+      add(new WorkPanel(((Presentation) this.slide.getParent()).getImageURL()), BorderLayout.CENTER);
     }
     add(nameLabel, BorderLayout.NORTH);
   }
 
-  class ImagePanel extends JPanel {
+  class WorkPanel extends JPanel {
     private Image img;
 
-    public ImagePanel(URL url) {
-      this(new ImageIcon(url).getImage());
-    }
-
-    public ImagePanel(Image img) {
-      this.img = img;
+    public WorkPanel(URL url) {
+      this.img = new ImageIcon(url).getImage();
     }
 
     public void paintComponent(Graphics g) {
-      //g.drawImage(img, (int) (this.getSize().getWidth() - img.getWidth(null)) / 2,
-              //(int) (this.getSize().getHeight() - img.getHeight(null)) / 2, null);
       g.drawImage(img, 0, 0, getWidth(), getHeight(), null);
     }
   }

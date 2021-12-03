@@ -16,11 +16,13 @@ import java.util.List;
 @Setter
 
 public class Presentation extends RuNodeComposite {
-  private String authorName = "Unknown";
+  private String authorName;
   private URL imageURL;
 
   public Presentation(RuNode parent, String name) {
     super(parent, name);
+    this.authorName = "Unknown";
+    this.imageURL = getClass().getResource("images/default.jpg");
   }
 
   public void setAuthorName(String authorName) {

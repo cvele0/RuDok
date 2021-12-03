@@ -11,7 +11,7 @@ import model.workspace.Presentation;
 import model.workspace.Project;
 import model.workspace.Slide;
 import observer.ISubscriber;
-import state.StateManager;
+import state.slideshow.StateManager;
 
 import javax.swing.*;
 import java.awt.*;

@@ -12,6 +12,7 @@ public class EditInfoDialog extends JDialog {
   private JButton changeBackground1;
   private JButton changeBackground2;
   private JButton changeBackground3;
+  private JButton changeBackground4;
 
   public EditInfoDialog() {
     super(MainFrame.getInstance(), "Edit info", true);
@@ -21,9 +22,11 @@ public class EditInfoDialog extends JDialog {
 
   private void initialize() {
     changeAuthorNameBtn = new JButton("Change author name");
-    changeBackground1 = new JButton("Background 1 (Japan)");
-    changeBackground2 = new JButton("Background 2 (Moscow)");
-    changeBackground3 = new JButton("Background 3 (Nature)");
+    changeBackground1 = new JButton("Default Background");
+    changeBackground2 = new JButton("Background 1 (Japan)");
+    changeBackground3 = new JButton("Background 2 (Moscow)");
+    changeBackground4 = new JButton("Background 3 (Nature)");
+
 
     Toolkit toolkit = Toolkit.getDefaultToolkit();
     Dimension screenSize = toolkit.getScreenSize();
@@ -32,7 +35,7 @@ public class EditInfoDialog extends JDialog {
 
     setSize(new Dimension(screenWidth, screenHeight));
     setLocationRelativeTo(MainFrame.getInstance());
-    setLayout(new GridLayout(4, 1, 10, 10));
+    setLayout(new GridLayout(5, 1, 10, 10));
   }
 
   private void addItems() {
@@ -40,10 +43,12 @@ public class EditInfoDialog extends JDialog {
     add(changeBackground1);
     add(changeBackground2);
     add(changeBackground3);
+    add(changeBackground4);
 
     changeAuthorNameBtn.addActionListener(new ChangeAuthorName());
     changeBackground1.addActionListener(new ChangeBackground(this));
     changeBackground2.addActionListener(new ChangeBackground(this));
     changeBackground3.addActionListener(new ChangeBackground(this));
+    changeBackground4.addActionListener(new ChangeBackground(this));
   }
 }

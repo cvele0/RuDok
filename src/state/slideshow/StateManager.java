@@ -1,4 +1,4 @@
-package state;
+package state.slideshow;
 
 import lombok.Getter;
 

@@ -3,7 +3,7 @@ package controller.actions;
 import error.ErrorFactory;
 import gui.swing.tree.MyTreeNode;
 import model.workspace.*;
-import state.SlideshowState;
+import state.slideshow.SlideshowState;
 import view.MainFrame;
 
 import javax.swing.*;

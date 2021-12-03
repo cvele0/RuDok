@@ -84,7 +84,6 @@ public class PresentationView extends JPanel implements ISubscriber {
     jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftScroll, jScrollPane);
     jSplitPane.setDividerLocation(150);
     jSplitPane.setEnabled(false);
-    //jSplitPane.setOneTouchExpandable(false);
 
     setLayout(new BorderLayout());
   }

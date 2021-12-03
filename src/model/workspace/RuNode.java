@@ -14,6 +14,7 @@ import java.util.List;
 public class RuNode implements IPublisher {
   private String name;
   private RuNode parent;
+
   public RuNode(RuNode parent) {
     this.parent = parent;
   }

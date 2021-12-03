@@ -27,6 +27,8 @@ public class ChangeBackground implements ActionListener {
       imageURL = getClass().getResource("images/moscow.jpg");
     } else if (jButton.getText().contains("Nature")) {
       imageURL = getClass().getResource("images/nature.jpg");
+    } else if (jButton.getText().contains("Default")) {
+      imageURL = getClass().getResource("images/default1.jpg");
     }
 
     if (imageURL != null) {

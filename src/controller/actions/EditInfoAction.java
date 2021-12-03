@@ -1,7 +1,7 @@
 package controller.actions;
 
 import error.ErrorFactory;
-import state.SlideshowState;
+import state.slideshow.SlideshowState;
 import view.EditInfoDialog;
 import view.MainFrame;
 
