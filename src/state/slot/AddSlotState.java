@@ -1,5 +1,6 @@
 package state.slot;
 
+import lombok.Getter;
 import lombok.Setter;
 import model.workspace.Slot;
 import view.MainFrame;
@@ -8,6 +9,7 @@ import view.SlideView;
 import java.awt.*;
 
 @Setter
+@Getter
 
 public class AddSlotState implements SlotState {
   private Color color;

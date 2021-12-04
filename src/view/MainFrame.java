@@ -40,15 +40,12 @@ public class MainFrame extends JFrame implements ISubscriber {
 
   private StateManager stateManager;
 
-  private Color buttonColor;
-
   private MainFrame() {}
 
   private void initialize() {
     lastSelectedProject = null;
     lastSelectedPresentation = null;
     lastSelectedSlide = null;
-    this.setButtonColor(Color.RED);
 
     ErrorFactory.getInstance().addSubscriber(this);
 

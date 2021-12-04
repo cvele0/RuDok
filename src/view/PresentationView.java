@@ -72,7 +72,6 @@ public class PresentationView extends JPanel implements ISubscriber {
 
     removeSlotBtn = new JButton();
     changeColorBtn = new JButton();
-    changeColorBtn.setBackground(MainFrame.getInstance().getButtonColor());
 
     // CENTER PANEL
     boxLayout = new BoxLayout(jPanel, BoxLayout.PAGE_AXIS);
@@ -128,6 +127,7 @@ public class PresentationView extends JPanel implements ISubscriber {
       Icon icon4 = loadIcon("images/paint25x25.png");
       changeColorBtn.setIcon(icon4);
       changeColorBtn.setMaximumSize(new Dimension(35, 35));
+      changeColorBtn.setBackground((this.presentation.getSlotStateManager().getAddSlotState().getColor()));
 
       // CURRENT STATE COLOR
       if (this.presentation.getSlotStateManager().getCurrentSlotState() instanceof AddSlotState) {
@@ -158,7 +158,6 @@ public class PresentationView extends JPanel implements ISubscriber {
           Color color = JColorChooser.showDialog(null, "Please select a color", Color.RED);
           this.presentation.getSlotStateManager().getAddSlotState().setColor(color);
           changeColorBtn.setBackground(color);
-          MainFrame.getInstance().setButtonColor(color);
         });
 
     setLayout(new BorderLayout());
