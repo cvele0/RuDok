@@ -24,7 +24,6 @@ public class Slide extends RuNode {
   }
 
   public void removeSlot(Slot slot) {
-    //TODO implement remove
     slots.remove(slot);
     notifySubscribers(this);
   }

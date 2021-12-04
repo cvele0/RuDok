@@ -13,5 +13,11 @@ public class Slot {
   private Dimension dimension;
   private Stroke stroke;
   private Paint paint;
+  private Color color;
 
+  private Slide parent;
+
+  public Slot(Point position) {
+    this.position = position;
+  }
 }

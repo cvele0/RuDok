@@ -6,10 +6,14 @@ import model.workspace.Presentation;
 import model.workspace.RuNode;
 import model.workspace.Slide;
 import observer.ISubscriber;
+import state.slot.AddSlotState;
+import state.slot.RemoveSlotState;
+import state.slot.SelectSlotState;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.net.URL;
 
 @Getter
 @Setter
@@ -20,6 +24,7 @@ public class PresentationView extends JPanel implements ISubscriber {
   private JPanel jPanel;
   private JLabel jLabel;
   private JPanel leftPanel;
+  private JPanel toolbarPanel;
 
   private JScrollPane jScrollPane;
   private JScrollPane leftScroll;
@@ -28,12 +33,12 @@ public class PresentationView extends JPanel implements ISubscriber {
 
   private BoxLayout boxLayout;
 
-  public PresentationView() {
-    presentation = null;
-    initialize();
-    addElements();
-    update(this);
-  }
+  private JButton selectSlotBtn;
+  private JButton addSlotBtn;
+  private JButton removeSlotBtn;
+  private JButton changeColorBtn;
+
+  private static Color selectedStateColor = new Color(112, 155, 249);
 
   public PresentationView(Presentation presentation) {
     this.presentation = presentation;
@@ -60,6 +65,14 @@ public class PresentationView extends JPanel implements ISubscriber {
     jLabel = new JLabel();
     jPanel = new JPanel();
     leftPanel = new JPanel();
+    toolbarPanel = new JPanel();
+
+    selectSlotBtn = new JButton();
+    addSlotBtn = new JButton();
+
+    removeSlotBtn = new JButton();
+    changeColorBtn = new JButton();
+    changeColorBtn.setBackground(MainFrame.getInstance().getButtonColor());
 
     // CENTER PANEL
     boxLayout = new BoxLayout(jPanel, BoxLayout.PAGE_AXIS);
@@ -85,11 +98,74 @@ public class PresentationView extends JPanel implements ISubscriber {
     jSplitPane.setDividerLocation(150);
     jSplitPane.setEnabled(false);
 
+    //TOOLBAR PANEL
+    BoxLayout boxLayout2 = new BoxLayout(toolbarPanel, BoxLayout.X_AXIS);
+    toolbarPanel.setLayout(boxLayout2);
+
+      // BUTTONS
+      toolbarPanel.add(jLabel);
+      toolbarPanel.add(Box.createHorizontalStrut(40));
+      toolbarPanel.add(selectSlotBtn);
+      toolbarPanel.add(Box.createHorizontalStrut(10));
+      toolbarPanel.add(addSlotBtn);
+      toolbarPanel.add(Box.createHorizontalStrut(10));
+      toolbarPanel.add(removeSlotBtn);
+      toolbarPanel.add(Box.createHorizontalStrut(10));
+      toolbarPanel.add(changeColorBtn);
+
+      Icon icon1 = loadIcon("images/addRectangle25x25.png");
+      addSlotBtn.setIcon(icon1);
+      addSlotBtn.setMaximumSize(new Dimension(35, 35));
+
+      Icon icon2 = loadIcon("images/removeRectangle25x25.png");
+      removeSlotBtn.setIcon(icon2);
+      removeSlotBtn.setMaximumSize(new Dimension(35, 35));
+
+      Icon icon3 = loadIcon("images/select25x25.png");
+      selectSlotBtn.setIcon(icon3);
+      selectSlotBtn.setMaximumSize(new Dimension(35, 35));
+
+      Icon icon4 = loadIcon("images/paint25x25.png");
+      changeColorBtn.setIcon(icon4);
+      changeColorBtn.setMaximumSize(new Dimension(35, 35));
+
+      // CURRENT STATE COLOR
+      if (this.presentation.getSlotStateManager().getCurrentSlotState() instanceof AddSlotState) {
+        addSlotBtn.setBackground(selectedStateColor);
+      } else if (this.presentation.getSlotStateManager().getCurrentSlotState() instanceof RemoveSlotState) {
+        removeSlotBtn.setBackground(selectedStateColor);
+      } else if (this.presentation.getSlotStateManager().getCurrentSlotState() instanceof SelectSlotState) {
+        selectSlotBtn.setBackground(selectedStateColor);
+      }
+
+      // LISTENERS FOR BUTTONS
+        selectSlotBtn.addActionListener(e -> {
+          this.presentation.startSelectSlotState();
+          MainFrame.getInstance().refresh(); // Mora refresh radi bojenja trenutnog izabranog statea
+        });
+
+        addSlotBtn.addActionListener(e -> {
+          this.presentation.startAddSlotState();
+          MainFrame.getInstance().refresh();
+        });
+
+        removeSlotBtn.addActionListener(e -> {
+          this.presentation.startRemoveSlotState();
+          MainFrame.getInstance().refresh();
+        });
+
+        changeColorBtn.addActionListener(e -> {
+          Color color = JColorChooser.showDialog(null, "Please select a color", Color.RED);
+          this.presentation.getSlotStateManager().getAddSlotState().setColor(color);
+          changeColorBtn.setBackground(color);
+          MainFrame.getInstance().setButtonColor(color);
+        });
+
     setLayout(new BorderLayout());
   }
 
   private void addElements() {
-    add(jLabel, BorderLayout.NORTH);
+    add(toolbarPanel, BorderLayout.NORTH);
     add(jSplitPane, BorderLayout.CENTER);
   }
 
@@ -123,5 +199,18 @@ public class PresentationView extends JPanel implements ISubscriber {
         leftPanel.add(Box.createVerticalStrut(30));
       }
     }
+  }
+
+  public Icon loadIcon(String fileName) {
+    URL imageURL = getClass().getResource(fileName);
+    Icon icon = null;
+
+    if (imageURL != null) {
+      icon = new ImageIcon(imageURL);
+    } else {
+      System.err.println("Resource not found " + fileName);
+    }
+
+    return icon;
   }
 }
