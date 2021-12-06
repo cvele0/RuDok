@@ -187,14 +187,9 @@ public class PresentationView extends JPanel implements ISubscriber {
     leftPanel.removeAll();
     if (this.presentation != null) {
       for (RuNode item : this.presentation.getChildren()) {
-        SlideView slideView = new SlideView((Slide) item);
+        SmallSlideView smallSlideView = new SmallSlideView((Slide) item);
 
-        slideView.getNameLabel().setFont(new Font("Times New Roman", Font.BOLD, 13));
-        slideView.getNameLabel().setBorder(new EmptyBorder(0, 2, 0, 0));
-        slideView.setPreferredSize(new Dimension(100, 75));
-        slideView.setMaximumSize(new Dimension(100, 75));
-
-        leftPanel.add(slideView);
+        leftPanel.add(smallSlideView);
         leftPanel.add(Box.createVerticalStrut(30));
       }
     }
