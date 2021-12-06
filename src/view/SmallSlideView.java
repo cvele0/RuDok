@@ -52,7 +52,7 @@ public class SmallSlideView extends JPanel implements ISubscriber {
     setLayout(new BorderLayout());
 
     nameLabel.setFont(new Font("Times New Roman", Font.BOLD, 12));
-    nameLabel.setBorder(new EmptyBorder(0, 2, 0, 0));
+    nameLabel.setBorder(new EmptyBorder(0, 4, 0, 0));
     nameLabel.setForeground(Color.BLACK);
   }
 

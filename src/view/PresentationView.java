@@ -185,12 +185,13 @@ public class PresentationView extends JPanel implements ISubscriber {
     }
 
     leftPanel.removeAll();
+    leftPanel.add(Box.createVerticalStrut(5));
     if (this.presentation != null) {
       for (RuNode item : this.presentation.getChildren()) {
         SmallSlideView smallSlideView = new SmallSlideView((Slide) item);
 
         leftPanel.add(smallSlideView);
-        leftPanel.add(Box.createVerticalStrut(30));
+        leftPanel.add(Box.createVerticalStrut(15));
       }
     }
   }
