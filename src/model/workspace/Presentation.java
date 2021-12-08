@@ -2,12 +2,10 @@ package model.workspace;
 
 import lombok.Getter;
 import lombok.Setter;
-import state.slideshow.SlideshowState;
 import state.slideshow.State;
 import state.slideshow.StateManager;
 import state.slot.SlotState;
 import state.slot.SlotStateManager;
-import view.SlideView;
 
 import java.awt.*;
 import java.net.URL;
@@ -40,48 +38,44 @@ public class Presentation extends RuNodeComposite {
     notifySubscribers(this);
   }
 
+  // SLOT STATES
   public void startSelectSlotState() {
     this.slotStateManager.setSelectSlotState();
   }
-
   public void startAddSlotState() {
     this.slotStateManager.setAddSlotState();
   }
-
-  public void startRemoveSlotState() {
-    this.slotStateManager.setRemoveSlotState();
-  }
-
-  public void startMoveSlotState() {
-    this.slotStateManager.setMoveSlotState();
-  }
-
-  public void startMouseClick(Slide slide, Slot slot, Point position) {
-    this.slotStateManager.getCurrentSlotState().mouseClick(slide, slot, position);
-  }
-
-  public void startEditState() {
-    this.stateManager.setEditState();
-  }
-
-  public void startSlideshowState() {
-    this.stateManager.setSlideshowState();
-  }
-
   public void setAddSlotStateColor(Color color) {
     this.slotStateManager.getAddSlotState().setColor(color);
   }
-
   public Color getAddSlotStateColor() {
     return slotStateManager.getAddSlotState().getColor();
   }
-
-  public State getCurrentState() {
-    return stateManager.getCurrentState();
+  public void startRemoveSlotState() {
+    this.slotStateManager.setRemoveSlotState();
   }
-
+  public void startMoveSlotState() {
+    this.slotStateManager.setMoveSlotState();
+  }
+  public void startMouseClick(Slide slide, Slot slot, Point position) {
+    this.slotStateManager.getCurrentSlotState().mouseClick(slide, slot, position);
+  }
+  public void startMouseClick(Slot slot, Point position) {
+    this.slotStateManager.getCurrentSlotState().mouseClick(slot, position);
+  }
   public SlotState getCurrentSlotState() {
     return slotStateManager.getCurrentSlotState();
+  }
+
+  //SLIDESHOW STATES
+  public void startEditState() {
+    this.stateManager.setEditState();
+  }
+  public void startSlideshowState() {
+    this.stateManager.setSlideshowState();
+  }
+  public State getCurrentState() {
+    return stateManager.getCurrentState();
   }
 
   @Override

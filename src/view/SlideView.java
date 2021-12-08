@@ -69,7 +69,11 @@ public class SlideView extends JPanel implements ISubscriber {
     if (this.slide != null) {
       WorkPanel workPanel = new WorkPanel(((Presentation) this.slide.getParent()).getImageURL());
       add(workPanel, BorderLayout.CENTER);
-      workPanel.addMouseListener(new MouseClickController(this));
+      MouseClickController mouseClickController = new MouseClickController(this);
+      workPanel.addMouseListener(mouseClickController);
+      workPanel.addMouseMotionListener(mouseClickController);
+      //workPanel.addMouseListener(new MouseClickController(this));
+      //workPanel.addMouseMotionListener(new MouseDragController(this));
     }
     add(nameLabel, BorderLayout.NORTH);
   }

@@ -26,4 +26,9 @@ public class AddSlotState implements SlotState {
     newSlot.setParent(slide);  //newSlot.setPaint(Color.BLUE);
     slide.addSlot(newSlot);
   }
+
+  @Override
+  public void mouseClick(Slot slot, Point position) {
+
+  }
 }

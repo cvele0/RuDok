@@ -10,4 +10,9 @@ public class RemoveSlotState implements SlotState {
   public void mouseClick(Slide slide, Slot slot, Point position) {
     slide.removeSlot(slot);
   }
+
+  @Override
+  public void mouseClick(Slot slot, Point position) {
+
+  }
 }
