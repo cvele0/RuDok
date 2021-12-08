@@ -141,16 +141,16 @@ public class PresentationView extends JPanel implements ISubscriber {
     loadButton(slideShowBtn, "images/slideshow25x25.png");
     loadButton(moveSlotBtn, "images/move25x25.png");
 
-    changeColorBtn.setBackground((this.presentation.getSlotStateManager().getAddSlotState().getColor()));
+    changeColorBtn.setBackground((this.presentation.getAddSlotStateColor()));
 
     // CURRENT STATE COLOR
-    if (this.presentation.getSlotStateManager().getCurrentSlotState() instanceof AddSlotState) {
+    if (this.presentation.getCurrentSlotState() instanceof AddSlotState) {
       addSlotBtn.setBackground(selectedStateColor);
-    } else if (this.presentation.getSlotStateManager().getCurrentSlotState() instanceof RemoveSlotState) {
+    } else if (this.presentation.getCurrentSlotState() instanceof RemoveSlotState) {
       removeSlotBtn.setBackground(selectedStateColor);
-    } else if (this.presentation.getSlotStateManager().getCurrentSlotState() instanceof SelectSlotState) {
+    } else if (this.presentation.getCurrentSlotState() instanceof SelectSlotState) {
       selectSlotBtn.setBackground(selectedStateColor);
-    } else if (this.presentation.getSlotStateManager().getCurrentSlotState() instanceof MoveSlotState) {
+    } else if (this.presentation.getCurrentSlotState() instanceof MoveSlotState) {
       moveSlotBtn.setBackground(selectedStateColor);
     }
 
@@ -191,7 +191,7 @@ public class PresentationView extends JPanel implements ISubscriber {
   private void addElements() {
     removeAll();
     if (this.presentation != null) {
-      if (this.presentation.getStateManager().getCurrentState() instanceof SlideshowState) {
+      if (this.presentation.getCurrentState() instanceof SlideshowState) {
         add(new SlideshowView(this.presentation), BorderLayout.CENTER);
       } else {
         add(toolbarPanel, BorderLayout.NORTH);

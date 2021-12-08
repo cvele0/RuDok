@@ -2,7 +2,10 @@ package model.workspace;
 
 import lombok.Getter;
 import lombok.Setter;
+import state.slideshow.SlideshowState;
+import state.slideshow.State;
 import state.slideshow.StateManager;
+import state.slot.SlotState;
 import state.slot.SlotStateManager;
 import view.SlideView;
 
@@ -67,6 +70,18 @@ public class Presentation extends RuNodeComposite {
 
   public void setAddSlotStateColor(Color color) {
     this.slotStateManager.getAddSlotState().setColor(color);
+  }
+
+  public Color getAddSlotStateColor() {
+    return slotStateManager.getAddSlotState().getColor();
+  }
+
+  public State getCurrentState() {
+    return stateManager.getCurrentState();
+  }
+
+  public SlotState getCurrentSlotState() {
+    return slotStateManager.getCurrentSlotState();
   }
 
   @Override
