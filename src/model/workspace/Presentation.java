@@ -2,17 +2,12 @@ package model.workspace;
 
 import lombok.Getter;
 import lombok.Setter;
-import observer.IPublisher;
-import observer.ISubscriber;
+import state.slideshow.StateManager;
 import state.slot.SlotStateManager;
-import view.MainFrame;
 import view.SlideView;
 
-import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
@@ -22,10 +17,12 @@ public class Presentation extends RuNodeComposite {
   private URL imageURL;
 
   private SlotStateManager slotStateManager;
+  private StateManager stateManager;
 
   public Presentation(RuNode parent, String name) {
     super(parent, name);
     slotStateManager = new SlotStateManager();
+    stateManager = new StateManager();
     this.authorName = "Unknown";
     this.imageURL = getClass().getResource("images/default.jpg");
   }
@@ -52,8 +49,24 @@ public class Presentation extends RuNodeComposite {
     this.slotStateManager.setRemoveSlotState();
   }
 
-  public void startMouseClick(SlideView slideView, Point position) {
-    this.slotStateManager.getCurrentSlotState().mouseClick(slideView, position);
+  public void startMoveSlotState() {
+    this.slotStateManager.setMoveSlotState();
+  }
+
+  public void startMouseClick(Slide slide, Slot slot, Point position) {
+    this.slotStateManager.getCurrentSlotState().mouseClick(slide, slot, position);
+  }
+
+  public void startEditState() {
+    this.stateManager.setEditState();
+  }
+
+  public void startSlideshowState() {
+    this.stateManager.setSlideshowState();
+  }
+
+  public void setAddSlotStateColor(Color color) {
+    this.slotStateManager.getAddSlotState().setColor(color);
   }
 
   @Override

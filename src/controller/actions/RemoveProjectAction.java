@@ -21,11 +21,6 @@ public class RemoveProjectAction extends AbstractRudokAction {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    if (MainFrame.getInstance().getStateManager().getCurrentState() instanceof SlideshowState) {
-      ErrorFactory.getInstance().generateError(this, "Invalid action in slide show view.");
-      return;
-    }
-
     MyTreeNode myTreeNode = (MyTreeNode) MainFrame.getInstance().getWorkspaceTree().getLastSelectedPathComponent();
 
     if (myTreeNode == null) {
@@ -48,7 +43,6 @@ public class RemoveProjectAction extends AbstractRudokAction {
 
     if (ruNode instanceof Workspace) {
       ErrorFactory.getInstance().generateError(this, "Cannot delete a workspace.");
-      return;
     } else if (ruNode instanceof Project) {
       ((RuNodeComposite) ruNode.getParent()).removeChild(ruNode);
       MainFrame.getInstance().getWorkspaceTree().removeProject(myTreeNode);

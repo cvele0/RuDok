@@ -10,8 +10,8 @@ import lombok.Setter;
 import model.workspace.Presentation;
 import model.workspace.Project;
 import model.workspace.Slide;
+import model.workspace.Slot;
 import observer.ISubscriber;
-import state.slideshow.StateManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,11 +34,10 @@ public class MainFrame extends JFrame implements ISubscriber {
   private Project lastSelectedProject;
   private Presentation lastSelectedPresentation;
   private Slide lastSelectedSlide;
+  private Slot lastSelectedSlot;
 
   private Toolbar toolbar;
   private Menu menu;
-
-  private StateManager stateManager;
 
   private MainFrame() {}
 
@@ -57,7 +56,6 @@ public class MainFrame extends JFrame implements ISubscriber {
   private void initializeGUI() {
     actionManager = new ActionManager();
     projectView = new ProjectView();
-    stateManager = new StateManager();
     slideshowView = null;
 
     // MainFrame size
@@ -111,6 +109,7 @@ public class MainFrame extends JFrame implements ISubscriber {
     this.lastSelectedProject = lastSelectedProject;
     this.lastSelectedPresentation = null;
     this.lastSelectedSlide = null;
+    this.lastSelectedSlot = null;
     refresh();
   }
 
@@ -122,6 +121,7 @@ public class MainFrame extends JFrame implements ISubscriber {
     } else {
       this.lastSelectedPresentation = null;
       this.lastSelectedSlide = null;
+      this.lastSelectedSlot = null;
     }
     refresh();
   }
@@ -131,10 +131,23 @@ public class MainFrame extends JFrame implements ISubscriber {
       this.lastSelectedSlide = lastSelectedSlide;
       this.lastSelectedPresentation = (Presentation) this.lastSelectedSlide.getParent();
       this.lastSelectedProject = (Project) this.lastSelectedPresentation.getParent();
+      this.lastSelectedSlot = null;
     } else {
       this.lastSelectedSlide = null;
+      this.lastSelectedSlot = null;
     }
     refresh();
+  }
+
+  public void setLastSelectedSlot(Slot slot) {
+    if (slot != null) {
+      this.lastSelectedSlot = slot;
+      this.lastSelectedSlide = this.lastSelectedSlot.getParent();
+      this.lastSelectedPresentation = (Presentation) this.lastSelectedSlide.getParent();
+      this.lastSelectedProject = (Project) this.lastSelectedPresentation.getParent();
+    } else {
+      this.lastSelectedSlot = null;
+    }
   }
 
   public void refresh() {
@@ -144,17 +157,5 @@ public class MainFrame extends JFrame implements ISubscriber {
   @Override
   public void update(Object notification) {
     JOptionPane.showMessageDialog(this, ((MyError) notification).getMessage());
-  }
-
-  public void startEditState() {
-    this.stateManager.setEditState();
-  }
-
-  public void startSlideshowState() {
-    this.stateManager.setSlideshowState();
-  }
-
-  public void showContent() {
-    this.stateManager.getCurrentState().showContent();
   }
 }

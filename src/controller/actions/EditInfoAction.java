@@ -23,10 +23,6 @@ public class EditInfoAction extends AbstractRudokAction {
       ErrorFactory.getInstance().generateError(this, "Please select a presentation");
       return;
     }
-    if (MainFrame.getInstance().getStateManager().getCurrentState() instanceof SlideshowState) {
-      ErrorFactory.getInstance().generateError(this, "Invalid action in slide show view.");
-      return;
-    }
 
     EditInfoDialog editInfoDialog = new EditInfoDialog();
     editInfoDialog.setVisible(true);

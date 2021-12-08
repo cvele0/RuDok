@@ -15,11 +15,5 @@ public class Toolbar extends JToolBar {
     add(MainFrame.getInstance().getActionManager().getRemoveProjectAction());
     add(MainFrame.getInstance().getActionManager().getInfoAction());
     add(MainFrame.getInstance().getActionManager().getEditInfoAction());
-    add(MainFrame.getInstance().getActionManager().getSlideshowAction());
-  }
-
-  public void setSlideshowMode() {
-    removeAll();
-    add(MainFrame.getInstance().getActionManager().getExitSlideshowAction());
   }
 }

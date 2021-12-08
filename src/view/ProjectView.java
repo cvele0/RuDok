@@ -28,16 +28,6 @@ public class ProjectView extends JPanel implements ISubscriber {
     update(this);
   }
 
-  public ProjectView(Project project) {
-    this.project = project;
-    if (this.project != null) {
-      this.project.addSubscriber(this);
-    }
-    initialize();
-    addElements();
-    update(this);
-  }
-
   public void setProject(Project project) {
     if (this.project != null) {
       this.project.removeSubscriber(this);
@@ -57,12 +47,9 @@ public class ProjectView extends JPanel implements ISubscriber {
     jLabel.setPreferredSize(new Dimension(20, 45));
     jLabel.setFont(new Font("Times New Roman", Font.BOLD, 25));
     jLabel.setForeground(Color.BLACK);
-    //jLabel.setForeground(Color.WHITE);
     jLabel.setBorder(new EmptyBorder(5, 15, 5, 0));
 
     setBackground(new Color(252, 47, 44));
-    //setBackground(new Color(67, 146, 206));
-    //setBackground(new Color(238, 173, 33));
     setMinimumSize(new Dimension(300, 300));
 
     setLayout(new BorderLayout());

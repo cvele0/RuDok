@@ -19,10 +19,6 @@ public class InfoAction extends AbstractRudokAction {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    if (MainFrame.getInstance().getStateManager().getCurrentState() instanceof SlideshowState) {
-      ErrorFactory.getInstance().generateError(this, "Invalid action in slide show view.");
-      return;
-    }
     InfoDialog infoDialog = new InfoDialog();
     infoDialog.setVisible(true);
   }

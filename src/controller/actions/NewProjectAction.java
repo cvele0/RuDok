@@ -21,11 +21,6 @@ public class NewProjectAction extends AbstractRudokAction {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    if (MainFrame.getInstance().getStateManager().getCurrentState() instanceof SlideshowState) {
-      ErrorFactory.getInstance().generateError(this, "Invalid action in slide show view.");
-      return;
-    }
-
     MyTreeNode myTreeNode = (MyTreeNode) MainFrame.getInstance().getWorkspaceTree().getLastSelectedPathComponent();
 
     if (myTreeNode == null) {
@@ -76,7 +71,6 @@ public class NewProjectAction extends AbstractRudokAction {
       MyTreeNode node = new MyTreeNode(slide);
       node.setParent(myTreeNode);
       MainFrame.getInstance().getWorkspaceTree().addProject(node);
-
       MainFrame.getInstance().refresh();
     } else if (ruNode instanceof Slide) {
       ErrorFactory.getInstance().generateError(this, "Cannot add any more nodes.");

@@ -6,9 +6,11 @@ import lombok.Getter;
 
 public class SlotStateManager {
   private SlotState currentSlotState;
+
   private SelectSlotState selectSlotState;
   private AddSlotState addSlotState;
   private RemoveSlotState removeSlotState;
+  private MoveSlotState moveSlotState;
 
   public SlotStateManager() {
     initialize();
@@ -18,6 +20,7 @@ public class SlotStateManager {
     selectSlotState = new SelectSlotState();
     addSlotState = new AddSlotState();
     removeSlotState = new RemoveSlotState();
+    moveSlotState = new MoveSlotState();
     this.currentSlotState = this.selectSlotState;
   }
 
@@ -31,5 +34,9 @@ public class SlotStateManager {
 
   public void setRemoveSlotState() {
     this.currentSlotState = this.removeSlotState;
+  }
+
+  public void setMoveSlotState() {
+    this.currentSlotState = this.moveSlotState;
   }
 }

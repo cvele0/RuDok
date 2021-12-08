@@ -12,6 +12,7 @@ public class ChangeAuthorName implements ActionListener {
     String authorName = JOptionPane.showInputDialog("Enter new author name: ");
     if (MainFrame.getInstance().getLastSelectedPresentation() != null) {
       MainFrame.getInstance().getLastSelectedPresentation().setAuthorName(authorName);
+      MainFrame.getInstance().refresh();
     }
   }
 }

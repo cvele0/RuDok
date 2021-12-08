@@ -21,8 +21,6 @@ public class WorkspaceTreeCellEditor extends DefaultTreeCellEditor implements Ac
     super(arg0, arg1);
   }
 
-  //TODO dodati da se dva projekta ne mogu isto nazivati
-
   public Component getTreeCellEditorComponent(JTree arg0, Object arg1, boolean arg2, boolean arg3, boolean arg4, int arg5) {
     //super.getTreeCellEditorComponent(arg0,arg1,arg2,arg3,arg4,arg5);
     stavka = arg1;
@@ -33,9 +31,7 @@ public class WorkspaceTreeCellEditor extends DefaultTreeCellEditor implements Ac
 
   public boolean isCellEditable(EventObject arg0) {
     if (arg0 instanceof MouseEvent) {
-      if (((MouseEvent) arg0).getClickCount() == 3) {
-        return true;
-      }
+      return ((MouseEvent) arg0).getClickCount() == 3;
     }
     return false;
   }

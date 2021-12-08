@@ -2,9 +2,8 @@ package state.slot;
 
 import lombok.Getter;
 import lombok.Setter;
+import model.workspace.Slide;
 import model.workspace.Slot;
-import view.MainFrame;
-import view.SlideView;
 
 import java.awt.*;
 
@@ -19,15 +18,12 @@ public class AddSlotState implements SlotState {
   }
 
   @Override
-  public void mouseClick(SlideView slideView, Point position) {
-    Slot slot = new Slot(position);
-    slot.setColor(this.color);
-    slot.setDimension(new Dimension(50, 50));
-    slot.setStroke(new BasicStroke(3f));
-    slot.setParent(slideView.getSlide());
-    //slot.setPaint(Color.BLUE);
-
-    slideView.getSlide().addSlot(slot);
-    MainFrame.getInstance().refresh();
+  public void mouseClick(Slide slide, Slot slot, Point position) {
+    Slot newSlot = new Slot(position);
+    newSlot.setColor(this.color);
+    newSlot.setDimension(new Dimension(50, 50));
+    newSlot.setStroke(new BasicStroke(3f));
+    newSlot.setParent(slide);  //newSlot.setPaint(Color.BLUE);
+    slide.addSlot(newSlot);
   }
 }

@@ -26,6 +26,11 @@ public class RuNode implements IPublisher {
     this.name = name;
   }
 
+  public void setName(String name) {
+    this.name = name;
+    notifySubscribers(this);
+  }
+
   @Override
   public String toString() {
     return name;

@@ -1,9 +1,10 @@
 package state.slot;
 
-import view.SlideView;
+import model.workspace.Slide;
+import model.workspace.Slot;
 
 import java.awt.*;
 
 public interface SlotState {
-  void mouseClick(SlideView slideView, Point position);
+  void mouseClick(Slide slide, Slot slot, Point position);
 }
