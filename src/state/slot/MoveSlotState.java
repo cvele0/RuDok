@@ -8,7 +8,7 @@ import java.awt.*;
 public class MoveSlotState implements SlotState {
   @Override
   public void mouseClick(Slide slide, Slot slot, Point position) {
-    System.out.println("Move 3 arg");
+
   }
 
   @Override
