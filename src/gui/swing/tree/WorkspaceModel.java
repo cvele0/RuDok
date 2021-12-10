@@ -7,7 +7,7 @@ import javax.swing.tree.DefaultTreeModel;
 
 public class WorkspaceModel extends DefaultTreeModel {
   public WorkspaceModel() {
-    super(new MyTreeNode(new Workspace(null, "Workspace")));
+    super(new MyTreeNode(new Workspace()));
   }
 
   public void addProject(MyTreeNode myTreeNode) {

@@ -20,12 +20,16 @@ public class Presentation extends RuNodeComposite {
   private SlotStateManager slotStateManager;
   private StateManager stateManager;
 
-  public Presentation(RuNode parent, String name) {
-    super(parent, name);
+  public Presentation() {
     slotStateManager = new SlotStateManager();
     stateManager = new StateManager();
     this.authorName = "Unknown";
     this.imageURL = getClass().getResource("images/default.jpg");
+  }
+
+  @Override
+  public void setName(String name, int size) {
+    super.setName("Presentation " + size);
   }
 
   public void setAuthorName(String authorName) {

@@ -15,21 +15,18 @@ public class RuNode implements IPublisher {
   private String name;
   private RuNode parent;
 
-  public RuNode(RuNode parent) {
-    this.parent = parent;
-  }
-
   private List<ISubscriber> subscribers;
 
-  public RuNode(RuNode parent, String name) {
-    this.parent = parent;
-    this.name = name;
+  public RuNode() {
+
   }
 
   public void setName(String name) {
     this.name = name;
     notifySubscribers(this);
   }
+  
+  public void setName(String name, int size) {}
 
   @Override
   public String toString() {

@@ -1,8 +1,9 @@
 package model;
 
 public class Workspace extends RuNodeComposite {
-  public Workspace(RuNode parent, String name) {
-    super(parent, name);
+  public Workspace() {
+    setParent(null);
+    setName("Workspace");
   }
 
   @Override

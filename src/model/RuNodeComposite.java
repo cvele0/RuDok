@@ -10,12 +10,8 @@ import java.util.List;
 public abstract class RuNodeComposite extends RuNode {
   private List<RuNode> children = new ArrayList<RuNode>();
 
-  public RuNodeComposite(RuNode parent, String name) {
-    super(parent, name);
-  }
+  public RuNodeComposite() {
 
-  public RuNodeComposite(RuNode parent) {
-    super(parent);
   }
 
   public abstract void addChild(RuNode ruNode);

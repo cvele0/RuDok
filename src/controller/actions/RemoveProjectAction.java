@@ -22,27 +22,16 @@ public class RemoveProjectAction extends AbstractRudokAction {
   public void actionPerformed(ActionEvent e) {
     MyTreeNode myTreeNode = (MyTreeNode) MainFrame.getInstance().getWorkspaceTree().getLastSelectedPathComponent();
 
-    if (myTreeNode == null) {
-      ErrorFactory.getInstance().generateError(this, "Please select a node.");
-      return;
-    }
+    if (checkForErrors(myTreeNode)) return;
 
     RuNode ruNode = myTreeNode.getRuNode();
-    if (ruNode instanceof Slide) {
-      ruNode = MainFrame.getInstance().getLastSelectedSlide();
-    } else if (ruNode instanceof Presentation) {
-      ruNode = MainFrame.getInstance().getLastSelectedPresentation();
-    } else if (ruNode instanceof Project) {
-      ruNode = MainFrame.getInstance().getLastSelectedProject();
-    }
-    if (ruNode == null) {
-      ErrorFactory.getInstance().generateError(this, "Please select a node.");
+    if (ruNode instanceof Workspace) {
+      ErrorFactory.getInstance().generateError(this, "Cannot delete a workspace.");
       return;
     }
 
-    if (ruNode instanceof Workspace) {
-      ErrorFactory.getInstance().generateError(this, "Cannot delete a workspace.");
-    } else if (ruNode instanceof Project) {
+    //Node deletion
+    if (ruNode instanceof Project) {
       ((RuNodeComposite) ruNode.getParent()).removeChild(ruNode);
       MainFrame.getInstance().getWorkspaceTree().removeProject(myTreeNode);
       MainFrame.getInstance().setLastSelectedProject(null);

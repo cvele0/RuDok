@@ -10,12 +10,13 @@ public class Project extends RuNodeComposite {
   public static int projectCounter = 0;
   private int serialNumber;
 
-  public Project(RuNode parent, String name) {
-    super(parent, name);
+  public Project() {
+
   }
 
-  public Project(RuNode parent) {
-    super(parent);
+  @Override
+  public void setName(String name, int size) {
+    super.setName("Project " + (++Project.projectCounter));
   }
 
   @Override

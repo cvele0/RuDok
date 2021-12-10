@@ -13,9 +13,13 @@ public class Slide extends RuNode {
   private int pageNumber;
   private List<Slot> slots;
 
-  public Slide(RuNode parent, String name) {
-    super(parent, name);
+  public Slide() {
     slots = new ArrayList<>();
+  }
+
+  @Override
+  public void setName(String name, int size) {
+    setName("Slide " + size);
   }
 
   public void addSlot(Slot slot) {

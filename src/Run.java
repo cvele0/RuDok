@@ -10,4 +10,3 @@ public class Run {
 
 //TODO popraviti slideshow view (4)
 //TODO dodati listener na thumbnails (okvir i selection) (3)
-//TODO *** popraviti add metodu sa factory method (2)
