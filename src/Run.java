@@ -8,7 +8,9 @@ public class Run {
   }
 }
 
-//TODO popraviti slideshow view
-//TODO dodati listener na thumbnails (okvir i selection)
-//TODO dodati jos opcija: debljina okvira, vrsta linije, mozda fill i velicinu pravougaonika
-//TODO *** popraviti add metodu sa factory method
+//TODO popraviti slideshow view (4)
+//TODO dodati listener na thumbnails (okvir i selection) (3)
+//TODO dodati jos opcija: debljina okvira, vrsta linije, mozda fill i velicinu pravougaonika (1)
+//TODO *** popraviti add metodu sa factory method (2)
+
+//TODO selekcija odabranog slota (option)

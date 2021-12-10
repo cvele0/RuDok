@@ -56,6 +56,7 @@ public class MouseClickController extends MouseInputAdapter {
   public void mouseDragged(MouseEvent e) {
     Point position = e.getPoint();
 
+    if (lastSelectedRectangleSlotView == null) return;
     if (lastSelectedRectangleSlotView.elementAt(position)) recognizeObject = true;
     if (!recognizeObject) return;
 

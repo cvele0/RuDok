@@ -49,7 +49,19 @@ public class Presentation extends RuNodeComposite {
     this.slotStateManager.getAddSlotState().setColor(color);
   }
   public Color getAddSlotStateColor() {
-    return slotStateManager.getAddSlotState().getColor();
+    return this.slotStateManager.getAddSlotState().getColor();
+  }
+  public void setAddSlotStateInterruptedStroke(boolean interruptedStroke) {
+    this.slotStateManager.getAddSlotState().setInterruptedStroke(interruptedStroke);
+  }
+  public boolean isAddSlotStateInterruptedStroke() {
+    return this.slotStateManager.getAddSlotState().isInterruptedStroke();
+  }
+  public void setAddSlotStateLineWidth(int lineWidth) {
+    this.slotStateManager.getAddSlotState().setLineWidth(lineWidth);
+  }
+  public int getAddSlotStateLineWidth() {
+    return this.slotStateManager.getAddSlotState().getLineWidth();
   }
   public void startRemoveSlotState() {
     this.slotStateManager.setRemoveSlotState();
@@ -64,7 +76,7 @@ public class Presentation extends RuNodeComposite {
     this.slotStateManager.getCurrentSlotState().mouseClick(slot, position);
   }
   public SlotState getCurrentSlotState() {
-    return slotStateManager.getCurrentSlotState();
+    return this.slotStateManager.getCurrentSlotState();
   }
 
   //SLIDESHOW STATES

@@ -41,6 +41,7 @@ public class PresentationView extends JPanel implements ISubscriber {
   private JButton changeColorBtn;
   private JButton slideShowBtn;
   private JButton moveSlotBtn;
+  private JButton strokeBtn;
 
   private static Color selectedStateColor = new Color(112, 155, 249);
 
@@ -113,6 +114,8 @@ public class PresentationView extends JPanel implements ISubscriber {
     toolbarPanel.add(Box.createHorizontalStrut(10));
     toolbarPanel.add(slideShowBtn);
     toolbarPanel.add(Box.createHorizontalStrut(10));
+    toolbarPanel.add(strokeBtn);
+    toolbarPanel.add(Box.createHorizontalStrut(10));
     toolbarPanel.add(changeColorBtn);
 
     //toolbarPanel.setBorder(BorderFactory.createStrokeBorder(new BasicStroke(0.2f)));
@@ -133,6 +136,7 @@ public class PresentationView extends JPanel implements ISubscriber {
     changeColorBtn = new JButton();
     slideShowBtn = new JButton();
     moveSlotBtn = new JButton();
+    strokeBtn = new JButton();
 
     loadButton(addSlotBtn, "images/addRectangle25x25.png");
     loadButton(removeSlotBtn, "images/removeRectangle25x25.png");
@@ -140,6 +144,7 @@ public class PresentationView extends JPanel implements ISubscriber {
     loadButton(changeColorBtn, "images/paint25x25.png");
     loadButton(slideShowBtn, "images/slideshow25x25.png");
     loadButton(moveSlotBtn, "images/move25x25.png");
+    loadButton(strokeBtn, "images/stroke25x25.png");
 
     changeColorBtn.setBackground((this.presentation.getAddSlotStateColor()));
 
@@ -157,7 +162,7 @@ public class PresentationView extends JPanel implements ISubscriber {
     // LISTENERS FOR BUTTONS
     selectSlotBtn.addActionListener(e -> {
       this.presentation.startSelectSlotState();
-      MainFrame.getInstance().refresh(); // Refresh upotrebljen radi bojenja trenutno izabranog statea
+      MainFrame.getInstance().refresh(); //Painting selected state
     });
 
     addSlotBtn.addActionListener(e -> {
@@ -185,6 +190,11 @@ public class PresentationView extends JPanel implements ISubscriber {
     moveSlotBtn.addActionListener(e -> {
       this.presentation.startMoveSlotState();
       MainFrame.getInstance().refresh();
+    });
+
+    strokeBtn.addActionListener(e -> {
+      EditStrokeDialog editStrokeDialog = new EditStrokeDialog(this.presentation);
+      editStrokeDialog.setVisible(true);
     });
   }
 

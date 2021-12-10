@@ -33,12 +33,17 @@ public class SmallRectangleSlotView {
     ((GeneralPath) shape).closePath();
 
     g.setPaint(slot.getColor());
-    g.setStroke(new BasicStroke((float) (3.0 / 4.0)));
+    float size = (float) (slot.getLineWidth() / 4.0);
+    if (!slot.isInterruptedStroke()) {
+      g.setStroke(new BasicStroke(size, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER));
+    } else {
+      g.setStroke(new BasicStroke(size, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER,
+              2f, new float[]{7f / 4.0f}, 0.0f));
+    }
     g.draw(getShape());
 
-    g.setPaint(slot.getPaint());
+    //g.setPaint(slot.getPaint());
     //g.fill(getShape());
-
     //g.drawRect(slot.getPosition().x, slot.getPosition().y, slot.getDimension().width, slot.getDimension().height);
   }
 

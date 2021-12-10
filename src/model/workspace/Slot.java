@@ -14,6 +14,8 @@ public class Slot {
   private Stroke stroke;
   private Paint paint;
   private Color color;
+  private int lineWidth;
+  private boolean interruptedStroke;
 
   private Slide parent;
 
