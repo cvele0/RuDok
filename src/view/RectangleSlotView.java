@@ -1,7 +1,7 @@
 package view;
 
 import lombok.Getter;
-import model.workspace.Slot;
+import model.Slot;
 
 import java.awt.*;
 import java.awt.geom.GeneralPath;

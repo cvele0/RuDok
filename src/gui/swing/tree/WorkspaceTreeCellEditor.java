@@ -1,7 +1,7 @@
 package gui.swing.tree;
 
 import error.ErrorFactory;
-import model.workspace.RuNode;
+import model.RuNode;
 import view.MainFrame;
 
 import javax.swing.*;

@@ -2,8 +2,8 @@ package gui.swing.tree;
 
 import lombok.Getter;
 import lombok.Setter;
-import model.workspace.RuNode;
-import model.workspace.RuNodeComposite;
+import model.RuNode;
+import model.RuNodeComposite;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeNode;
@@ -65,19 +65,11 @@ public class MyTreeNode extends DefaultMutableTreeNode {
 
   @Override
   public boolean getAllowsChildren() {
-    if (ruNode instanceof RuNodeComposite) {
-      return true;
-    } else {
-      return false;
-    }
+    return ruNode instanceof RuNodeComposite;
   }
 
   @Override
   public boolean isLeaf() {
-    if (ruNode instanceof RuNodeComposite) {
-      return false;
-    } else {
-      return true;
-    }
+    return !(ruNode instanceof RuNodeComposite);
   }
 }

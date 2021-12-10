@@ -2,8 +2,8 @@ package state.slot;
 
 import lombok.Getter;
 import lombok.Setter;
-import model.workspace.Slide;
-import model.workspace.Slot;
+import model.Slide;
+import model.Slot;
 
 import java.awt.*;
 

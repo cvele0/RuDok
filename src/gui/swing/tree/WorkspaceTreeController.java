@@ -1,9 +1,9 @@
 package gui.swing.tree;
 
-import model.workspace.Presentation;
-import model.workspace.Project;
-import model.workspace.RuNode;
-import model.workspace.Slide;
+import model.Presentation;
+import model.Project;
+import model.RuNode;
+import model.Slide;
 import view.MainFrame;
 
 import javax.swing.event.TreeSelectionEvent;

@@ -2,9 +2,9 @@ package view;
 
 import lombok.Getter;
 import lombok.Setter;
-import model.workspace.Presentation;
-import model.workspace.RuNode;
-import model.workspace.Slide;
+import model.Presentation;
+import model.RuNode;
+import model.Slide;
 import observer.ISubscriber;
 import state.slideshow.SlideshowState;
 import state.slot.AddSlotState;

@@ -1,6 +1,8 @@
 package gui.swing.tree;
 
-import model.workspace.*;
+import model.Presentation;
+import model.Project;
+import model.Slide;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellRenderer;

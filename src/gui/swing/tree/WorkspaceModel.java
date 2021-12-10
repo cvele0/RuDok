@@ -1,6 +1,6 @@
 package gui.swing.tree;
 
-import model.workspace.*;
+import model.Workspace;
 import view.MainFrame;
 
 import javax.swing.tree.DefaultTreeModel;

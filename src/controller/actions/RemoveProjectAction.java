@@ -2,8 +2,7 @@ package controller.actions;
 
 import error.ErrorFactory;
 import gui.swing.tree.MyTreeNode;
-import model.workspace.*;
-import state.slideshow.SlideshowState;
+import model.*;
 import view.MainFrame;
 
 import javax.swing.*;

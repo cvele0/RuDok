@@ -1,7 +1,7 @@
 package state.slot;
 
-import model.workspace.Slide;
-import model.workspace.Slot;
+import model.Slide;
+import model.Slot;
 
 import java.awt.*;
 

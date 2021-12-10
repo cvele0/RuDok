@@ -1,4 +1,4 @@
-package model.workspace;
+package model;
 
 import lombok.Getter;
 

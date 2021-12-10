@@ -1,7 +1,7 @@
 package view;
 
-import model.workspace.Presentation;
-import model.workspace.Slide;
+import model.Presentation;
+import model.Slide;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

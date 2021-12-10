@@ -2,9 +2,9 @@ package view;
 
 import lombok.Getter;
 import lombok.Setter;
-import model.workspace.Presentation;
-import model.workspace.Project;
-import model.workspace.RuNode;
+import model.Presentation;
+import model.Project;
+import model.RuNode;
 import observer.ISubscriber;
 
 import javax.swing.*;

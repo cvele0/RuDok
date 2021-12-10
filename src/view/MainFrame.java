@@ -7,9 +7,9 @@ import gui.swing.tree.WorkspaceTree;
 import lombok.Getter;
 import gui.swing.tree.WorkspaceModel;
 import lombok.Setter;
-import model.workspace.Presentation;
-import model.workspace.Project;
-import model.workspace.Slide;
+import model.Presentation;
+import model.Project;
+import model.Slide;
 import observer.ISubscriber;
 
 import javax.swing.*;

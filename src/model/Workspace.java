@@ -1,4 +1,4 @@
-package model.workspace;
+package model;
 
 public class Workspace extends RuNodeComposite {
   public Workspace(RuNode parent, String name) {

@@ -2,9 +2,9 @@ package view;
 
 import controller.edit.MouseClickController;
 import lombok.Getter;
-import model.workspace.Presentation;
-import model.workspace.Slide;
-import model.workspace.Slot;
+import model.Presentation;
+import model.Slide;
+import model.Slot;
 import observer.ISubscriber;
 
 import javax.swing.*;

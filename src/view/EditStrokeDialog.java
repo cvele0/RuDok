@@ -1,7 +1,7 @@
 package view;
 
 import lombok.Getter;
-import model.workspace.Presentation;
+import model.Presentation;
 
 import javax.swing.*;
 import java.awt.*;
