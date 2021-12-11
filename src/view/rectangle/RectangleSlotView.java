@@ -1,30 +1,32 @@
-package view;
+package view.rectangle;
 
 import lombok.Getter;
+import lombok.Setter;
 import model.Slot;
 
 import java.awt.*;
 import java.awt.geom.GeneralPath;
 
 @Getter
+@Setter
 
-public class SmallRectangleSlotView {
+public class RectangleSlotView {
   private Slot slot;
   private Shape shape;
+  private double x;
+  private double y;
+  private double width;
+  private double height;
+  private float lineWidth;
+  private float interruptedScale;
 
-  public SmallRectangleSlotView(Slot slot) {
+  public RectangleSlotView(Slot slot) {
     this.slot = slot;
     shape = new GeneralPath();
   }
 
   public void paint(Graphics graphics) {
     Graphics2D g = (Graphics2D) graphics;
-
-    double x = slot.getPosition().x / 4.0;
-    double y = slot.getPosition().y / 4.0;
-
-    double width = getSlot().getDimension().width / 4.0;
-    double height = getSlot().getDimension().height / 4.0;
 
     ((GeneralPath) shape).moveTo(x, y);
     ((GeneralPath) shape).lineTo(x + height , y);
@@ -33,12 +35,11 @@ public class SmallRectangleSlotView {
     ((GeneralPath) shape).closePath();
 
     g.setPaint(slot.getColor());
-    float size = (float) (slot.getLineWidth() / 4.0);
     if (!slot.isInterruptedStroke()) {
-      g.setStroke(new BasicStroke(size, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER));
+      g.setStroke(new BasicStroke(lineWidth, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER));
     } else {
-      g.setStroke(new BasicStroke(size, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER,
-              2f, new float[]{7f / 4.0f}, 0.0f));
+      g.setStroke(new BasicStroke(lineWidth, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER,
+              2f, new float[]{interruptedScale}, 0.0f));
     }
     g.draw(getShape());
 

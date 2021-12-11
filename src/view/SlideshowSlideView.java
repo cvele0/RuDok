@@ -5,6 +5,7 @@ import model.Presentation;
 import model.Slide;
 import model.Slot;
 import observer.ISubscriber;
+import view.rectangle.SlideshowRectangleSlotView;
 import view.rectangle.SmallRectangleSlotView;
 
 import javax.swing.*;
@@ -16,14 +17,14 @@ import java.util.List;
 
 @Getter
 
-public class SmallSlideView extends JPanel implements ISubscriber {
+public class SlideshowSlideView extends JPanel implements ISubscriber {
   private Slide slide;
 
   private JLabel nameLabel;
 
-  List<SmallRectangleSlotView> rectangles;
+  List<SlideshowRectangleSlotView> rectangles;
 
-  public SmallSlideView(Slide slide) {
+  public SlideshowSlideView(Slide slide) {
     this.slide = slide;
     if (this.slide != null) {
       this.slide.addSubscriber(this);
@@ -36,12 +37,12 @@ public class SmallSlideView extends JPanel implements ISubscriber {
     nameLabel = new JLabel();
     rectangles = new ArrayList<>();
 
-    setPreferredSize(new Dimension(100, 83));
-    setMaximumSize(new Dimension(100, 83));
+    setPreferredSize(new Dimension(800, 620));
+    setMaximumSize(new Dimension(800, 620));
     setLayout(new BorderLayout());
 
-    nameLabel.setFont(new Font("Times New Roman", Font.BOLD, 12));
-    nameLabel.setBorder(new EmptyBorder(0, 4, 0, 0));
+    nameLabel.setFont(new Font("Times New Roman", Font.BOLD, 30));
+    nameLabel.setBorder(new EmptyBorder(0, 15, 0, 0));
     nameLabel.setForeground(Color.BLACK);
   }
 
@@ -73,7 +74,7 @@ public class SmallSlideView extends JPanel implements ISubscriber {
 
       rectangles.clear();
       for (Slot slot : getSlide().getSlots()) {
-        SmallRectangleSlotView r = new SmallRectangleSlotView(slot);
+        SlideshowRectangleSlotView r = new SlideshowRectangleSlotView(slot);
         rectangles.add(r);
         r.paint(g);
       }

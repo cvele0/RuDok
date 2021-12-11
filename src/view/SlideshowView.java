@@ -53,13 +53,12 @@ public class SlideshowView extends JPanel {
     toolbarPanel.setLayout(boxLayout1);
     toolbarPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
     toolbarPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
-    //toolbarPanel.setBorder(BorderFactory.createStrokeBorder(new BasicStroke(0.4f)));
 
     // BUTTONS
     BoxLayout boxLayout = new BoxLayout(buttonPanel, BoxLayout.X_AXIS);
     buttonPanel.setLayout(boxLayout);
     buttonPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-    buttonPanel.setBorder(new EmptyBorder(10, 0, 10, 0));
+    buttonPanel.setBorder(new EmptyBorder(10, 0, 5, 0));
 
     exitSlideshowBtn.setPreferredSize(new Dimension(35, 35));
     exitSlideshowBtn.setMaximumSize(new Dimension(35, 35));
@@ -95,14 +94,12 @@ public class SlideshowView extends JPanel {
     toolbarPanel.add(exitSlideshowBtn);
 
     for (int i = 0; i < this.presentation.getChildren().size(); i++) {
-      SlideView slideView = new SlideView((Slide) this.presentation.getChildren().get(i));
-      centerPanel.add(slideView, "slide" + i);
+      SlideshowSlideView slideshowSlideView = new SlideshowSlideView((Slide) this.presentation.getChildren().get(i));
+      centerPanel.add(slideshowSlideView, "slide" + i);
     }
 
-    centerPanel.setPreferredSize(new Dimension(400, 300));
-    centerPanel.setMinimumSize(new Dimension(400, 300));
-    int width = MainFrame.getInstance().getSize().width / 8;
-    centerPanel.setBorder(new EmptyBorder(10, width,  10, width));
+    int width = MainFrame.getInstance().getSize().width / 6;
+    centerPanel.setBorder(new EmptyBorder(0, width,  0, width));
 
     add(toolbarPanel, BorderLayout.NORTH);
     add(centerPanel, BorderLayout.CENTER);
