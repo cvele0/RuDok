@@ -13,8 +13,16 @@ public class Slide extends RuNode {
   private int pageNumber;
   private List<Slot> slots;
 
+  private boolean selectedThumbnail;
+
   public Slide() {
     slots = new ArrayList<>();
+    this.selectedThumbnail = false;
+  }
+
+  public void setSelectedThumbnail(boolean selectedThumbnail) {
+    this.selectedThumbnail = selectedThumbnail;
+    notifySubscribers(this);
   }
 
   @Override

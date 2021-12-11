@@ -17,12 +17,15 @@ public class Presentation extends RuNodeComposite {
   private String authorName;
   private URL imageURL;
 
+  private int lastSelectedSlideView;
+
   private SlotStateManager slotStateManager;
   private StateManager stateManager;
 
   public Presentation() {
     slotStateManager = new SlotStateManager();
     stateManager = new StateManager();
+    this.lastSelectedSlideView = 0;
     this.authorName = "Unknown";
     this.imageURL = getClass().getResource("images/default.jpg");
   }

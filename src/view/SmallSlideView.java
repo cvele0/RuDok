@@ -31,17 +31,6 @@ public class SmallSlideView extends JPanel implements ISubscriber {
     update(this);
   }
 
-  public void setSlide(Slide slide) {
-    if (this.slide != null) {
-      this.slide.removeSubscriber(this);
-    }
-    this.slide = slide;
-    if (this.slide != null) {
-      this.slide.addSubscriber(this);
-    }
-    update(this);
-  }
-
   private void initialize() {
     nameLabel = new JLabel();
     rectangles = new ArrayList<>();

@@ -1,5 +1,8 @@
 package view;
 
+import controller.edit.SmallViewEnterMouseController;
+import controller.edit.SmallViewExitMouseController;
+import javafx.scene.layout.BorderStroke;
 import lombok.Getter;
 import lombok.Setter;
 import model.Presentation;
@@ -226,11 +229,23 @@ public class PresentationView extends JPanel implements ISubscriber {
       }
     }
 
+    getJScrollPane().getViewport().setViewPosition(new Point(0,
+            this.presentation.getLastSelectedSlideView() * 300 + this.presentation.getLastSelectedSlideView() * 30));
+
     leftPanel.removeAll();
     leftPanel.add(Box.createVerticalStrut(5));
     if (this.presentation != null) {
+      int indexNumber = 0;
       for (RuNode item : this.presentation.getChildren()) {
         SmallSlideView smallSlideView = new SmallSlideView((Slide) item);
+
+        if (((Slide) item).isSelectedThumbnail()) {
+          smallSlideView.setBorder(BorderFactory.createStrokeBorder(new BasicStroke(2f), new Color(252, 47, 44)));
+          smallSlideView.addMouseListener(new SmallViewExitMouseController(this, smallSlideView, indexNumber++));
+        } else {
+          smallSlideView.setBorder(null);
+          smallSlideView.addMouseListener(new SmallViewEnterMouseController(this, smallSlideView, indexNumber++));
+        }
 
         leftPanel.add(smallSlideView);
         leftPanel.add(Box.createVerticalStrut(15));
