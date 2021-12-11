@@ -36,8 +36,8 @@ public class SmallSlideView extends JPanel implements ISubscriber {
     nameLabel = new JLabel();
     rectangles = new ArrayList<>();
 
-    setPreferredSize(new Dimension(100, 83));
-    setMaximumSize(new Dimension(100, 83));
+    setPreferredSize(new Dimension(100, 80));
+    setMaximumSize(new Dimension(100, 80));
     setLayout(new BorderLayout());
 
     nameLabel.setFont(new Font("Times New Roman", Font.BOLD, 12));

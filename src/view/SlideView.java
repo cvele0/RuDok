@@ -48,8 +48,8 @@ public class SlideView extends JPanel implements ISubscriber {
     nameLabel = new JLabel();
     rectangles = new ArrayList<>();
 
-    setPreferredSize(new Dimension(400, 300));
-    setMaximumSize(new Dimension(400, 300));
+    setPreferredSize(new Dimension(400, 290));
+    setMaximumSize(new Dimension(400, 290));
     setLayout(new BorderLayout());
 
     nameLabel.setFont(new Font("Times New Roman", Font.BOLD, 22));
