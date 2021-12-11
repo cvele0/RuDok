@@ -4,7 +4,6 @@ import controller.edit.ChangeAuthorName;
 import controller.edit.ChangeBackground;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class EditInfoDialog extends JDialog {

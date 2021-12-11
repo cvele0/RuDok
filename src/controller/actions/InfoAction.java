@@ -1,9 +1,6 @@
 package controller.actions;
 
-import error.ErrorFactory;
-import state.slideshow.SlideshowState;
 import view.InfoDialog;
-import view.MainFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

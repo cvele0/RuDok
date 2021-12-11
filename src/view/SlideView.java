@@ -72,8 +72,6 @@ public class SlideView extends JPanel implements ISubscriber {
       MouseClickController mouseClickController = new MouseClickController(this);
       workPanel.addMouseListener(mouseClickController);
       workPanel.addMouseMotionListener(mouseClickController);
-      //workPanel.addMouseListener(new MouseClickController(this));
-      //workPanel.addMouseMotionListener(new MouseDragController(this));
     }
     add(nameLabel, BorderLayout.NORTH);
   }

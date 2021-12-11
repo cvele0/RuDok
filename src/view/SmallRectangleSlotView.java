@@ -44,7 +44,6 @@ public class SmallRectangleSlotView {
 
     //g.setPaint(slot.getPaint());
     //g.fill(getShape());
-    //g.drawRect(slot.getPosition().x, slot.getPosition().y, slot.getDimension().width, slot.getDimension().height);
   }
 
   public boolean elementAt(Point position) {

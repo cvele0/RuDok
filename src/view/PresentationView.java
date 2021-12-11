@@ -2,7 +2,6 @@ package view;
 
 import controller.edit.SmallViewEnterMouseController;
 import controller.edit.SmallViewExitMouseController;
-import javafx.scene.layout.BorderStroke;
 import lombok.Getter;
 import lombok.Setter;
 import model.Presentation;
@@ -121,7 +120,6 @@ public class PresentationView extends JPanel implements ISubscriber {
     toolbarPanel.add(Box.createHorizontalStrut(10));
     toolbarPanel.add(changeColorBtn);
 
-    //toolbarPanel.setBorder(BorderFactory.createStrokeBorder(new BasicStroke(0.2f)));
     setLayout(new BorderLayout());
   }
 

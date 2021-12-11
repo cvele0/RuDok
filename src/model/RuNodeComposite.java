@@ -8,7 +8,7 @@ import java.util.List;
 @Getter
 
 public abstract class RuNodeComposite extends RuNode {
-  private List<RuNode> children = new ArrayList<RuNode>();
+  private List<RuNode> children = new ArrayList<>();
 
   public RuNodeComposite() {
 

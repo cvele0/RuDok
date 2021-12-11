@@ -77,11 +77,7 @@ public class EditStrokeDialog extends JDialog {
   private void addListeners() {
     interruptedChb.addItemListener(e -> {
       boolean isSelected = getPresentation().isAddSlotStateInterruptedStroke();
-      if (isSelected) {
-        getPresentation().setAddSlotStateInterruptedStroke(false);
-      } else {
-        getPresentation().setAddSlotStateInterruptedStroke(true);
-      }
+      getPresentation().setAddSlotStateInterruptedStroke(!isSelected);
     });
 
     lineWidthCmb.addItemListener(e -> {
