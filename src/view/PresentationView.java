@@ -228,7 +228,7 @@ public class PresentationView extends JPanel implements ISubscriber {
     }
 
     getJScrollPane().getViewport().setViewPosition(new Point(0,
-            this.presentation.getLastSelectedSlideView() * 300 + this.presentation.getLastSelectedSlideView() * 30));
+            this.presentation.getLastSelectedSlideView() * 290 + this.presentation.getLastSelectedSlideView() * 30));
 
     leftPanel.removeAll();
     leftPanel.add(Box.createVerticalStrut(5));
