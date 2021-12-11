@@ -25,6 +25,10 @@ public class MouseClickController extends MouseInputAdapter {
       Point position = e.getPoint();
       RectangleSlotView selected = determineRectangleSlotView(position);
 
+      ((Presentation) this.slideView.getSlide().getParent()).setLastSelectedSlideView(
+              (((Presentation) this.slideView.getSlide().getParent()).getChildren().indexOf(slideView.getSlide()))
+      );
+
       if (selected != null) { // edit slot (move, remove)
         Slot slot = selected.getSlot();
         ((Presentation) slot.getParent().getParent()).startMouseClick(slot.getParent(), slot, position);
@@ -41,6 +45,10 @@ public class MouseClickController extends MouseInputAdapter {
     if (e.getButton() == MouseEvent.BUTTON1) {
       Point position = e.getPoint();
       RectangleSlotView selected = determineRectangleSlotView(position);
+
+      ((Presentation) this.slideView.getSlide().getParent()).setLastSelectedSlideView(
+              (((Presentation) this.slideView.getSlide().getParent()).getChildren().indexOf(slideView.getSlide()))
+      );
 
       if (selected != null) {
         lastSelectedRectangleSlotView = selected; // better feel while adding components

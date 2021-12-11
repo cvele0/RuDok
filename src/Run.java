@@ -7,6 +7,3 @@ public class Run {
     mainFrame.setVisible(true);
   }
 }
-
-//TODO popraviti slideshow view (4)
-//TODO dodati listener na thumbnails (okvir i selection) (3)
