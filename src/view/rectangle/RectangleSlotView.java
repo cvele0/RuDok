@@ -10,7 +10,7 @@ import java.awt.geom.GeneralPath;
 @Getter
 @Setter
 
-public class RectangleSlotView {
+public abstract class RectangleSlotView {
   private Slot slot;
   private Shape shape;
   private double x;

@@ -74,6 +74,7 @@ public class SlideshowView extends JPanel {
     prevBtn.addActionListener(e -> this.cardLayout.previous(this.centerPanel));
 
     exitSlideshowBtn.addActionListener(e -> {
+      this.presentation.setCurrentSlotState(this.presentation.getBeforeCurrentSlotState());
       this.presentation.startEditState();
       MainFrame.getInstance().refresh();
     });

@@ -85,6 +85,12 @@ public class Presentation extends RuNodeComposite {
   public SlotState getCurrentSlotState() {
     return this.slotStateManager.getCurrentSlotState();
   }
+  public void setCurrentSlotState(SlotState slotState) {
+    this.slotStateManager.setCurrentSlotState(slotState);
+  }
+  public SlotState getBeforeCurrentSlotState() {
+    return this.slotStateManager.getBeforeCurrentSlotState();
+  }
 
   //SLIDESHOW STATES
   public void startEditState() {
