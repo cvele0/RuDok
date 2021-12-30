@@ -9,6 +9,7 @@ import gui.swing.tree.WorkspaceModel;
 import lombok.Setter;
 import model.Presentation;
 import model.Project;
+import model.RuNode;
 import model.Slide;
 import observer.ISubscriber;
 
@@ -101,6 +102,16 @@ public class MainFrame extends JFrame implements ISubscriber {
       instance.initialize();
     }
     return instance;
+  }
+
+  public void setLastSelected(RuNode ruNode) {
+    if (ruNode instanceof Project) {
+      setLastSelectedProject((Project) ruNode);
+    } else if (ruNode instanceof Presentation) {
+      setLastSelectedPresentation((Presentation) ruNode);
+    } else if (ruNode instanceof Slide) {
+      setLastSelectedSlide((Slide) ruNode);
+    }
   }
 
   public void setLastSelectedProject(Project lastSelectedProject) {

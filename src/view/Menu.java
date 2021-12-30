@@ -12,6 +12,8 @@ public class Menu extends JMenuBar {
     JMenu editMenu = new JMenu("Edit");
     editMenu.setMnemonic(KeyEvent.VK_E);
     editMenu.add(MainFrame.getInstance().getActionManager().getRemoveProjectAction());
+    editMenu.add(MainFrame.getInstance().getActionManager().getUndoAction());
+    editMenu.add(MainFrame.getInstance().getActionManager().getRedoAction());
     editMenu.add(MainFrame.getInstance().getActionManager().getEditInfoAction());
 
     JMenu helpMenu = new JMenu("Help");

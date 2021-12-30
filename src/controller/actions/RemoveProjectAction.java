@@ -2,6 +2,7 @@ package controller.actions;
 
 import error.ErrorFactory;
 import gui.swing.tree.MyTreeNode;
+import gui.swing.tree.commands.RemoveNodeCommand;
 import model.*;
 import view.MainFrame;
 
@@ -30,16 +31,6 @@ public class RemoveProjectAction extends AbstractRudokAction {
       return;
     }
 
-    //Node deletion
-    if (ruNode instanceof Project) {
-      MainFrame.getInstance().setLastSelectedProject(null);
-    } else if (ruNode instanceof Presentation) {
-      MainFrame.getInstance().setLastSelectedPresentation(null);
-    } else if (ruNode instanceof Slide) {
-      MainFrame.getInstance().setLastSelectedSlide(null);
-    }
-
-    ((RuNodeComposite) ruNode.getParent()).removeChild(ruNode);
-    MainFrame.getInstance().getWorkspaceTree().removeProject(myTreeNode);
+    MainFrame.getInstance().getWorkspaceTree().getCommandManager().addCommand(new RemoveNodeCommand(myTreeNode));
   }
 }

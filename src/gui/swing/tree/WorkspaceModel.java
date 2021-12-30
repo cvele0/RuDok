@@ -1,7 +1,6 @@
 package gui.swing.tree;
 
 import model.Workspace;
-import view.MainFrame;
 
 import javax.swing.tree.DefaultTreeModel;
 
@@ -11,12 +10,10 @@ public class WorkspaceModel extends DefaultTreeModel {
   }
 
   public void addProject(MyTreeNode myTreeNode) {
-    MyTreeNode lastSelected = (MyTreeNode) MainFrame.getInstance().getWorkspaceTree().getLastSelectedPathComponent();
-    lastSelected.addProject(myTreeNode);
+    ((MyTreeNode) myTreeNode.getParent()).addProject(myTreeNode);
   }
 
   public void removeProject(MyTreeNode myTreeNode) {
-    MyTreeNode lastSelected = (MyTreeNode) MainFrame.getInstance().getWorkspaceTree().getLastSelectedPathComponent();
-    ((MyTreeNode) lastSelected.getParent()).removeProject(lastSelected);
+    ((MyTreeNode) myTreeNode.getParent()).removeProject(myTreeNode);
   }
 }

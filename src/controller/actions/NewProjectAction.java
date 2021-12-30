@@ -2,9 +2,8 @@ package controller.actions;
 
 import error.ErrorFactory;
 import gui.swing.tree.MyTreeNode;
+import gui.swing.tree.commands.AddNodeCommand;
 import model.*;
-import model.factory.AbstractNodeFactory;
-import model.factory.FactoryGenerator;
 import view.MainFrame;
 
 import javax.swing.*;
@@ -32,12 +31,6 @@ public class NewProjectAction extends AbstractRudokAction {
       return;
     }
 
-    // Factory method - node insertion
-    int size = myTreeNode.getChildCount();
-    AbstractNodeFactory ANF = FactoryGenerator.returnFactory(ruNode);
-    MyTreeNode child = new MyTreeNode(ANF.getNodeForTree(ruNode, size + 1));
-    child.setParent(myTreeNode);
-    MainFrame.getInstance().getWorkspaceTree().addProject(child);
-    MainFrame.getInstance().refresh();
+    MainFrame.getInstance().getWorkspaceTree().getCommandManager().addCommand(new AddNodeCommand(myTreeNode));
   }
 }

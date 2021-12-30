@@ -1,7 +1,7 @@
 package gui.swing.tree;
 
 import error.ErrorFactory;
-import model.RuNode;
+import gui.swing.tree.commands.RenameNodeCommand;
 import view.MainFrame;
 
 import javax.swing.*;
@@ -42,8 +42,7 @@ public class WorkspaceTreeCellEditor extends DefaultTreeCellEditor implements Ac
       return;
     }
 
-    RuNode ruNode = ((MyTreeNode) stavka).getRuNode();
-    ruNode.setName(e.getActionCommand());
-    MainFrame.getInstance().refresh();
+    MainFrame.getInstance().getWorkspaceTree().getCommandManager().addCommand(
+            new RenameNodeCommand((MyTreeNode) stavka, e.getActionCommand()));
   }
 }

@@ -1,9 +1,6 @@
 package gui.swing.tree;
 
-import model.Presentation;
-import model.Project;
 import model.RuNode;
-import model.Slide;
 import view.MainFrame;
 
 import javax.swing.event.TreeSelectionEvent;
@@ -19,16 +16,8 @@ public class WorkspaceTreeController implements TreeSelectionListener {
       MyTreeNode myTreeNode = (MyTreeNode) path.getPathComponent(i);
       RuNode ruNode = myTreeNode.getRuNode();
 
-      if (ruNode instanceof Project) {
-        MainFrame.getInstance().setLastSelectedProject((Project) ruNode);
-        MainFrame.getInstance().getWorkspaceTree().expandPath(path);
-      } else if (ruNode instanceof Presentation) {
-        MainFrame.getInstance().setLastSelectedPresentation((Presentation) ruNode);
-        MainFrame.getInstance().getWorkspaceTree().expandPath(path);
-      } else if (ruNode instanceof Slide) {
-        MainFrame.getInstance().setLastSelectedSlide((Slide) ruNode);
-        MainFrame.getInstance().getWorkspaceTree().expandPath(path);
-      }
+      MainFrame.getInstance().getWorkspaceTree().expandPath(path);
+      MainFrame.getInstance().setLastSelected(ruNode);
     }
   }
 }
