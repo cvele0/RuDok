@@ -40,6 +40,7 @@ public class RemoveNodeCommand extends AbstractCommand {
   public void undoCommand() {
     ((RuNodeComposite) getMyParent().getRuNode()).addChild(getMyTreeNode().getRuNode());
     MainFrame.getInstance().getWorkspaceTree().addProject(getMyTreeNode());
+    MainFrame.getInstance().setLastSelected(getMyTreeNode().getRuNode());
     MainFrame.getInstance().refresh();
   }
 }

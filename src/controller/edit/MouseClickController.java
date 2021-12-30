@@ -19,23 +19,28 @@ public class MouseClickController extends MouseInputAdapter {
     this.slideView = slideView;
   }
 
+  private void performClick(SlideRectangleSlotView selected, MouseEvent e) {
+    Point position = e.getPoint();
+    ((Presentation) this.slideView.getSlide().getParent()).setLastSelectedSlideView(
+            (((Presentation) this.slideView.getSlide().getParent()).getChildren().indexOf(slideView.getSlide()))
+    );
+
+    if (selected != null) { // edit slot (move, remove)
+      Slot slot = selected.getSlot();
+      ((Presentation) slot.getParent().getParent()).startMouseClick(slot.getParent(), slot, position);
+    } else { // add slot
+      ((Presentation) slideView.getSlide().getParent()).startMouseClick(slideView.getSlide(), null, position);
+    }
+    MainFrame.getInstance().repaint();
+  }
+
   @Override
   public void mouseClicked(MouseEvent e) {
     if (e.getButton() == MouseEvent.BUTTON1) {
       Point position = e.getPoint();
       SlideRectangleSlotView selected = determineRectangleSlotView(position);
 
-      ((Presentation) this.slideView.getSlide().getParent()).setLastSelectedSlideView(
-              (((Presentation) this.slideView.getSlide().getParent()).getChildren().indexOf(slideView.getSlide()))
-      );
-
-      if (selected != null) { // edit slot (move, remove)
-        Slot slot = selected.getSlot();
-        ((Presentation) slot.getParent().getParent()).startMouseClick(slot.getParent(), slot, position);
-      } else { // add slot
-        ((Presentation) slideView.getSlide().getParent()).startMouseClick(slideView.getSlide(), null, position);
-      }
-      MainFrame.getInstance().repaint();
+      performClick(selected, e);
     }
     this.recognizeObject = false;
   }
@@ -45,19 +50,11 @@ public class MouseClickController extends MouseInputAdapter {
     if (e.getButton() == MouseEvent.BUTTON1) {
       Point position = e.getPoint();
       SlideRectangleSlotView selected = determineRectangleSlotView(position);
-
-      ((Presentation) this.slideView.getSlide().getParent()).setLastSelectedSlideView(
-              (((Presentation) this.slideView.getSlide().getParent()).getChildren().indexOf(slideView.getSlide()))
-      );
-
       if (selected != null) {
-        lastSelectedSlideRectangleSlotView = selected; // better feel while adding components
-        ((Presentation) selected.getSlot().getParent().getParent()).startMouseClick(
-                selected.getSlot().getParent(), selected.getSlot(), position);
-      } else {
-        ((Presentation) slideView.getSlide().getParent()).startMouseClick(slideView.getSlide(), null, position);
+        lastSelectedSlideRectangleSlotView = selected;
       }
-      MainFrame.getInstance().repaint();
+
+      performClick(selected, e);
     }
     this.recognizeObject = false;
   }
@@ -67,8 +64,8 @@ public class MouseClickController extends MouseInputAdapter {
     Point position = e.getPoint();
 
     if (lastSelectedSlideRectangleSlotView == null) return;
-    if (lastSelectedSlideRectangleSlotView.elementAt(position)) recognizeObject = true;
-    if (!recognizeObject) return;
+    if (lastSelectedSlideRectangleSlotView.elementAt(position)) this.recognizeObject = true;
+    if (!this.recognizeObject) return;
 
     Slot slot = lastSelectedSlideRectangleSlotView.getSlot();
     if (slot != null) {
