@@ -1,7 +1,7 @@
 package controller.actions;
 
 import error.ErrorFactory;
-import view.EditInfoDialog;
+import view.popups.EditInfoDialog;
 import view.MainFrame;
 
 import javax.swing.*;

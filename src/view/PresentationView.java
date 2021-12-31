@@ -13,6 +13,7 @@ import state.slot.AddSlotState;
 import state.slot.MoveSlotState;
 import state.slot.RemoveSlotState;
 import state.slot.SelectSlotState;
+import view.popups.EditStrokeDialog;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

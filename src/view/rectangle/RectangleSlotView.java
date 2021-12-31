@@ -3,6 +3,8 @@ package view.rectangle;
 import lombok.Getter;
 import lombok.Setter;
 import model.Slot;
+import view.content.SlotHandler;
+import view.content.TextSlotHandler;
 
 import java.awt.*;
 import java.awt.geom.GeneralPath;
@@ -19,6 +21,8 @@ public abstract class RectangleSlotView {
   private double height;
   private float lineWidth;
   private float interruptedScale;
+
+  private SlotHandler slotHandler;
 
   public RectangleSlotView(Slot slot) {
     this.slot = slot;

@@ -18,4 +18,18 @@ public class Toolbar extends JToolBar {
     add(MainFrame.getInstance().getActionManager().getRedoAction());
     add(MainFrame.getInstance().getActionManager().getInfoAction());
   }
+
+  public void setEditTextMode() {
+    removeAll();
+    add(MainFrame.getInstance().getActionManager().getBoldAction());
+    add(MainFrame.getInstance().getActionManager().getItalicAction());
+    add(MainFrame.getInstance().getActionManager().getUnderlineAction());
+    add(MainFrame.getInstance().getActionManager().getSaveContentAction());
+  }
+
+  public void setEditMultimediaMode() {
+    removeAll();
+    add(MainFrame.getInstance().getActionManager().getOpenFileAction());
+    add(MainFrame.getInstance().getActionManager().getSaveContentAction());
+  }
 }

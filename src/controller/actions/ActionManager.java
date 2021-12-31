@@ -11,6 +11,11 @@ public class ActionManager {
   private RemoveProjectAction removeProjectAction;
   private UndoAction undoAction;
   private RedoAction redoAction;
+  private SaveContentAction saveContentAction;
+  private BoldAction boldAction;
+  private ItalicAction italicAction;
+  private UnderlineAction underlineAction;
+  private OpenFileAction openFileAction;
 
   public ActionManager() {
     initialize();
@@ -22,7 +27,11 @@ public class ActionManager {
     editInfoAction = new EditInfoAction();
     removeProjectAction = new RemoveProjectAction();
     undoAction = new UndoAction();
-    redoAction = new RedoAction();
-    this.redoAction.setEnabled(false);
+    redoAction = new RedoAction(); this.redoAction.setEnabled(false);
+    saveContentAction = new SaveContentAction();
+    boldAction = new BoldAction();
+    italicAction = new ItalicAction();
+    underlineAction = new UnderlineAction();
+    openFileAction= new OpenFileAction();
   }
 }

@@ -16,10 +16,17 @@ public class Slot {
   private Color color;
   private int lineWidth;
   private boolean interruptedStroke;
+  private Type type;
+  private String slotContent;
 
   private Slide parent;
 
   public Slot(Point position) {
     this.position = position;
+  }
+
+  public enum Type {
+    TEXT,
+    IMAGE
   }
 }

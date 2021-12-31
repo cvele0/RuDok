@@ -1,4 +1,6 @@
-package view;
+package view.popups;
+
+import view.MainFrame;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

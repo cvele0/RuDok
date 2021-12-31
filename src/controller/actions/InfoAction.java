@@ -1,6 +1,6 @@
 package controller.actions;
 
-import view.InfoDialog;
+import view.popups.InfoDialog;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

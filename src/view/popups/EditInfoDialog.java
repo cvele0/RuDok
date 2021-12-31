@@ -1,7 +1,8 @@
-package view;
+package view.popups;
 
 import controller.edit.ChangeAuthorName;
 import controller.edit.ChangeBackground;
+import view.MainFrame;
 
 import javax.swing.*;
 import java.awt.*;

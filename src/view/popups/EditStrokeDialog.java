@@ -1,7 +1,8 @@
-package view;
+package view.popups;
 
 import lombok.Getter;
 import model.Presentation;
+import view.MainFrame;
 
 import javax.swing.*;
 import java.awt.*;

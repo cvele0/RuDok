@@ -1,6 +1,6 @@
 package controller.edit;
 
-import view.EditInfoDialog;
+import view.popups.EditInfoDialog;
 import view.MainFrame;
 
 import javax.swing.*;

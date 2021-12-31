@@ -2,7 +2,9 @@ package controller.edit;
 
 import model.Presentation;
 import model.Slot;
+import state.slot.SelectSlotState;
 import view.MainFrame;
+import view.popups.SelectSlotTypeDialog;
 import view.rectangle.SlideRectangleSlotView;
 import view.SlideView;
 
@@ -19,15 +21,28 @@ public class MouseClickController extends MouseInputAdapter {
     this.slideView = slideView;
   }
 
-  private void performClick(SlideRectangleSlotView selected, MouseEvent e) {
+  private void startEditContent(SlideRectangleSlotView selected) {
+    if (selected.getSlot().getType() == null) {
+      SelectSlotTypeDialog selectSlotTypeDialog = new SelectSlotTypeDialog(selected);
+      selectSlotTypeDialog.setVisible(true);
+    }
+    selected.getSlotHandler().readContent();
+  }
+
+  private void performClick(SlideRectangleSlotView selected, MouseEvent e, boolean isClicked) {
     Point position = e.getPoint();
+
     ((Presentation) this.slideView.getSlide().getParent()).setLastSelectedSlideView(
             (((Presentation) this.slideView.getSlide().getParent()).getChildren().indexOf(slideView.getSlide()))
     );
 
-    if (selected != null) { // edit slot (move, remove)
+    if (selected != null) { // edit slot (move, remove, edit content)
       Slot slot = selected.getSlot();
-      ((Presentation) slot.getParent().getParent()).startMouseClick(slot.getParent(), slot, position);
+      if (((Presentation) slot.getParent().getParent()).getCurrentSlotState() instanceof SelectSlotState) {
+        if (isClicked) startEditContent(selected);
+      } else {
+        ((Presentation) slot.getParent().getParent()).startMouseClick(slot.getParent(), slot, position);
+      }
     } else { // add slot
       ((Presentation) slideView.getSlide().getParent()).startMouseClick(slideView.getSlide(), null, position);
     }
@@ -40,7 +55,7 @@ public class MouseClickController extends MouseInputAdapter {
       Point position = e.getPoint();
       SlideRectangleSlotView selected = determineRectangleSlotView(position);
 
-      performClick(selected, e);
+      performClick(selected, e, true);
     }
     this.recognizeObject = false;
   }
@@ -54,7 +69,7 @@ public class MouseClickController extends MouseInputAdapter {
         lastSelectedSlideRectangleSlotView = selected;
       }
 
-      performClick(selected, e);
+      performClick(selected, e, false);
     }
     this.recognizeObject = false;
   }
