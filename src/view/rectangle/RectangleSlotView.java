@@ -3,6 +3,7 @@ package view.rectangle;
 import lombok.Getter;
 import lombok.Setter;
 import model.Slot;
+import view.content.MultimediaSlotHandler;
 import view.content.SlotHandler;
 import view.content.TextSlotHandler;
 
@@ -27,6 +28,11 @@ public abstract class RectangleSlotView {
   public RectangleSlotView(Slot slot) {
     this.slot = slot;
     shape = new GeneralPath();
+    if (slot.getType() == Slot.Type.TEXT) {
+      setSlotHandler(new TextSlotHandler(this));
+    } else {
+      setSlotHandler(new MultimediaSlotHandler(this));
+    }
   }
 
   public void paint(Graphics graphics) {
@@ -46,6 +52,8 @@ public abstract class RectangleSlotView {
               2f, new float[]{interruptedScale}, 0.0f));
     }
     g.draw(getShape());
+
+    if (this instanceof SlideshowRectangleSlotView) slotHandler.paint(this, g);
 
     //g.setPaint(slot.getPaint());
     //g.fill(getShape());

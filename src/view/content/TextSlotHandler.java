@@ -1,5 +1,6 @@
 package view.content;
 
+import view.rectangle.RectangleSlotView;
 import view.rectangle.SlideRectangleSlotView;
 
 import javax.swing.*;
@@ -7,12 +8,13 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.Element;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
+import java.awt.*;
 
 public class TextSlotHandler implements SlotHandler {
-  private SlideRectangleSlotView slotView;
+  private RectangleSlotView slotView;
   private TextEditor textEditor;
 
-  public TextSlotHandler(SlideRectangleSlotView slotView) {
+  public TextSlotHandler(RectangleSlotView slotView) {
     this.slotView = slotView;
     this.textEditor = null;
   }
@@ -82,7 +84,7 @@ public class TextSlotHandler implements SlotHandler {
   }
 
   @Override
-  public void paint() {
+  public void paint(RectangleSlotView rectangleSlotView, Graphics2D g) {
 
   }
 }

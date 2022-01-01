@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import view.MainFrame;
 import view.Toolbar;
-import view.rectangle.SlideRectangleSlotView;
+import view.rectangle.RectangleSlotView;
 
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
@@ -19,9 +19,9 @@ import java.awt.*;
 public class TextEditor extends JFrame {
   private Toolbar toolbar;
   private JTextPane jTextPane;
-  private SlideRectangleSlotView slotView;
+  private RectangleSlotView slotView;
 
-  public TextEditor(SlideRectangleSlotView slotView) {
+  public TextEditor(RectangleSlotView slotView) {
     this.slotView = slotView;
     setButtonsForTextEditor();
     initialize();

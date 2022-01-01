@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import view.MainFrame;
 import view.Toolbar;
-import view.rectangle.SlideRectangleSlotView;
+import view.rectangle.RectangleSlotView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,11 +17,11 @@ import java.net.URL;
 
 public class MultimediaEditor extends JFrame {
   private Toolbar toolbar;
-  private SlideRectangleSlotView slotView;
+  private RectangleSlotView slotView;
   private JPanel jPanel;
   private String lastSelectedFilePath;
 
-  public MultimediaEditor(SlideRectangleSlotView slotView) {
+  public MultimediaEditor(RectangleSlotView slotView) {
     this.slotView = slotView;
     setButtonsForMultimediaEditor();
     initialize();
@@ -65,7 +65,7 @@ public class MultimediaEditor extends JFrame {
     try {
       workPanel = new WorkPanel(new File(this.lastSelectedFilePath).toURI().toURL());
     } catch (MalformedURLException e) {
-      e.printStackTrace();
+      System.err.println("Invalid resource.");
     }
     jPanel.removeAll();
     workPanel.setMinimumSize(new Dimension(200, 200));

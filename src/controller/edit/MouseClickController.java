@@ -5,6 +5,7 @@ import model.Slot;
 import state.slot.SelectSlotState;
 import view.MainFrame;
 import view.popups.SelectSlotTypeDialog;
+import view.rectangle.RectangleSlotView;
 import view.rectangle.SlideRectangleSlotView;
 import view.SlideView;
 
@@ -26,7 +27,9 @@ public class MouseClickController extends MouseInputAdapter {
       SelectSlotTypeDialog selectSlotTypeDialog = new SelectSlotTypeDialog(selected);
       selectSlotTypeDialog.setVisible(true);
     }
-    selected.getSlotHandler().readContent();
+    if (selected.getSlot().getType() != null) {
+      selected.getSlotHandler().readContent();
+    }
   }
 
   private void performClick(SlideRectangleSlotView selected, MouseEvent e, boolean isClicked) {

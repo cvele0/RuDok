@@ -1,12 +1,14 @@
 package view.content;
 
-import view.rectangle.SlideRectangleSlotView;
+import view.rectangle.RectangleSlotView;
+
+import java.awt.*;
 
 public class MultimediaSlotHandler implements SlotHandler {
-  private SlideRectangleSlotView slotView;
+  private RectangleSlotView slotView;
   private MultimediaEditor multimediaEditor;
 
-  public MultimediaSlotHandler(SlideRectangleSlotView slotView) {
+  public MultimediaSlotHandler(RectangleSlotView slotView) {
     this.slotView = slotView;
     this.multimediaEditor = null;
   }
@@ -23,7 +25,7 @@ public class MultimediaSlotHandler implements SlotHandler {
   }
 
   @Override
-  public void paint() {
+  public void paint(RectangleSlotView rectangleSlotView, Graphics2D g) {
 
   }
 }
