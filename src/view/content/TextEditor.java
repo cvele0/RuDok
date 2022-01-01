@@ -12,6 +12,8 @@ import javax.swing.text.Document;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 @Getter
 @Setter
@@ -47,7 +49,15 @@ public class TextEditor extends JFrame {
     setSize(screenWidth / 4, screenHeight / 3);
     Image image = toolkit.getImage("src/images/icon.png");
     setIconImage(image);
+
     setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    addWindowListener(new WindowAdapter() {
+      @Override
+      public void windowClosing(WindowEvent e) {
+        MainFrame.getInstance().refresh();
+      }
+    });
+
     setTitle("Text Editor");
     setLocationRelativeTo(null);
   }
@@ -57,6 +67,7 @@ public class TextEditor extends JFrame {
     toolbar.setEditTextMode();
 
     jTextPane = new JTextPane();
+    jTextPane.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 
     add(toolbar, BorderLayout.NORTH);
     add(jTextPane, BorderLayout.CENTER);

@@ -11,5 +11,13 @@ public class SmallRectangleSlotView extends RectangleSlotView {
     setHeight(slot.getDimension().height / 4.0);
     setLineWidth(slot.getLineWidth() / 4.0f);
     setInterruptedScale(7f / 4.0f);
+
+    setXStartDistance(15 / 6);
+    setYStartDistance(30 / 6);
+    setFontSize(18 / 6);
+    setXDistance(10 / 6);
+    setYDistance(20 / 6);
+    setNumberOfLetters(8);
+    setNumberOfRows(4);
   }
 }

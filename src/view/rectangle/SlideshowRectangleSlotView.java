@@ -11,5 +11,13 @@ public class SlideshowRectangleSlotView extends RectangleSlotView {
     setHeight(slot.getDimension().height * 2);
     setLineWidth(slot.getLineWidth() * 2);
     setInterruptedScale(14.0f);
+
+    setXStartDistance(15);
+    setYStartDistance(30);
+    setFontSize(18);
+    setXDistance(10);
+    setYDistance(20);
+    setNumberOfLetters(8);
+    setNumberOfRows(4);
   }
 }

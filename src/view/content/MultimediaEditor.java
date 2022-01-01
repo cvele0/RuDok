@@ -8,6 +8,8 @@ import view.rectangle.RectangleSlotView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -45,7 +47,15 @@ public class MultimediaEditor extends JFrame {
     setSize(screenWidth / 4, screenHeight / 3);
     Image image = toolkit.getImage("src/images/icon.png");
     setIconImage(image);
+
     setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    addWindowListener(new WindowAdapter() {
+      @Override
+      public void windowClosing(WindowEvent e) {
+        MainFrame.getInstance().refresh();
+      }
+    });
+
     setTitle("Multimedia Editor");
     setLocationRelativeTo(null);
   }
