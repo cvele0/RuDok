@@ -5,7 +5,6 @@ import model.Slot;
 import state.slot.SelectSlotState;
 import view.MainFrame;
 import view.popups.SelectSlotTypeDialog;
-import view.rectangle.RectangleSlotView;
 import view.rectangle.SlideRectangleSlotView;
 import view.SlideView;
 

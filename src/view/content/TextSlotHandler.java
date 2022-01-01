@@ -1,7 +1,6 @@
 package view.content;
 
 import view.rectangle.RectangleSlotView;
-import view.rectangle.SlideRectangleSlotView;
 
 import javax.swing.*;
 import javax.swing.text.AttributeSet;
