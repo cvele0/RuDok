@@ -2,15 +2,12 @@ package controller.actions;
 
 import lombok.Setter;
 
-import javax.swing.*;
 import javax.swing.text.*;
 import java.awt.event.ActionEvent;
 
 @Setter
 
 public class UnderlineAction extends AbstractRudokAction {
-  private JFrame editor;
-
   public UnderlineAction() {
     putValue(SMALL_ICON, loadIcon("images/underline25x25.png"));
     putValue(NAME, "Underline");

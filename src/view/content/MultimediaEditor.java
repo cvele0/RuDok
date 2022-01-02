@@ -32,7 +32,7 @@ public class MultimediaEditor extends JFrame {
   }
 
   private void setButtonsForMultimediaEditor() {
-    MainFrame.getInstance().getActionManager().getSaveContentAction().setEditor(this);
+    MainFrame.getInstance().getActionManager().getSaveContentAction().setSlotHandler(slotView.getSlotHandler());
     MainFrame.getInstance().getActionManager().getOpenFileAction().setEditor(this);
   }
 
@@ -78,8 +78,10 @@ public class MultimediaEditor extends JFrame {
       System.err.println("Invalid resource.");
     }
     jPanel.removeAll();
-    workPanel.setMinimumSize(new Dimension(200, 200));
-    workPanel.setPreferredSize(new Dimension(200, 200));
+    if (workPanel != null) {
+      workPanel.setMinimumSize(new Dimension(200, 200));
+      workPanel.setPreferredSize(new Dimension(200, 200));
+    }
     jPanel.add(workPanel);
     revalidate();
   }

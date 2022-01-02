@@ -1,16 +1,14 @@
 package controller.actions;
 
 import lombok.Setter;
-import view.content.MultimediaEditor;
-import view.content.TextEditor;
+import view.content.SlotHandler;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 @Setter
 
 public class SaveContentAction extends AbstractRudokAction {
-  private JFrame editor;
+  private SlotHandler slotHandler;
 
   public SaveContentAction() {
     putValue(SMALL_ICON, loadIcon("images/save25x25.png"));
@@ -20,10 +18,6 @@ public class SaveContentAction extends AbstractRudokAction {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    if (editor instanceof TextEditor) {
-      ((TextEditor) editor).getSlotView().getSlotHandler().setContent();
-    } else {
-      ((MultimediaEditor) editor).getSlotView().getSlotHandler().setContent();
-    }
+    this.slotHandler.setContent();
   }
 }

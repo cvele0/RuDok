@@ -32,10 +32,7 @@ public class TextEditor extends JFrame {
   }
 
   private void setButtonsForTextEditor() {
-    MainFrame.getInstance().getActionManager().getBoldAction().setEditor(this);
-    MainFrame.getInstance().getActionManager().getItalicAction().setEditor(this);
-    MainFrame.getInstance().getActionManager().getUnderlineAction().setEditor(this);
-    MainFrame.getInstance().getActionManager().getSaveContentAction().setEditor(this);
+    MainFrame.getInstance().getActionManager().getSaveContentAction().setSlotHandler(slotView.getSlotHandler());
   }
 
   private void initialize() {
