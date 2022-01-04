@@ -13,10 +13,10 @@ import java.awt.event.KeyEvent;
 
 public class RemoveProjectAction extends AbstractRudokAction {
   public RemoveProjectAction() {
-    putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_MASK));
+    putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_W, InputEvent.CTRL_MASK));
     putValue(SMALL_ICON, loadIcon("images/remove25x25.png"));
     putValue(NAME, "Remove Project");
-    putValue(SHORT_DESCRIPTION, "Remove Selected Project");
+    putValue(SHORT_DESCRIPTION, "Remove Project");
   }
 
   @Override

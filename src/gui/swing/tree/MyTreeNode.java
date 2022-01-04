@@ -4,7 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import model.RuNode;
 import model.RuNodeComposite;
+import view.MainFrame;
 
+import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeNode;
 import java.util.ArrayList;
@@ -23,6 +25,11 @@ public class MyTreeNode extends DefaultMutableTreeNode {
   public MyTreeNode(RuNode ruNode) {
     this.ruNode = ruNode;
     parent = null;
+  }
+
+  public void setChanged(boolean changed) {
+    ruNode.setChanged(changed);
+    SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getWorkspaceTree());
   }
 
   @Override

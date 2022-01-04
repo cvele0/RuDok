@@ -16,6 +16,13 @@ public class AddNodeCommand extends AbstractCommand {
     super(myTreeNode);
   }
 
+  private void setChanged() {
+    MainFrame.getInstance().setChangedProject(true);
+    if (myChild.getRuNode() instanceof Project) {
+      getMyTreeNode().setChanged(true);
+    }
+  }
+
   @Override
   public void doCommand() {
     if (myChild == null) {
@@ -37,7 +44,7 @@ public class AddNodeCommand extends AbstractCommand {
       MainFrame.getInstance().setLastSelected(child);
     }
     MainFrame.getInstance().getWorkspaceTree().addProject(myChild);
-    MainFrame.getInstance().refresh();
+    setChanged();
   }
 
   @Override
@@ -53,8 +60,9 @@ public class AddNodeCommand extends AbstractCommand {
       MainFrame.getInstance().setLastSelectedSlide(null);
     }
 
+    MainFrame.getInstance().setLastSelected(ruNode);
     ((RuNodeComposite) ruNode.getParent()).removeChild(ruNode);
     MainFrame.getInstance().getWorkspaceTree().removeProject(getMyChild());
-    MainFrame.getInstance().refresh();
+    setChanged();
   }
 }

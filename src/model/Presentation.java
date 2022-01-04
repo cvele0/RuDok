@@ -19,8 +19,8 @@ public class Presentation extends RuNodeComposite {
 
   private int lastSelectedSlideView;
 
-  private SlotStateManager slotStateManager;
-  private StateManager stateManager;
+  private transient SlotStateManager slotStateManager;
+  private transient StateManager stateManager;
 
   public Presentation() {
     slotStateManager = new SlotStateManager();
@@ -43,6 +43,12 @@ public class Presentation extends RuNodeComposite {
   public void setImageURL(URL imageURL) {
     this.imageURL = imageURL;
     notifySubscribers(this);
+  }
+
+  private Object readResolve() {
+    slotStateManager = new SlotStateManager();
+    stateManager = new StateManager();
+    return this;
   }
 
   // SLOT STATES

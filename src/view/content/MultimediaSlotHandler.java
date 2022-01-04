@@ -36,7 +36,7 @@ public class MultimediaSlotHandler implements SlotHandler {
         url = new File(this.slotView.getSlot().getSlotContent()).toURI().toURL();
       }
     } catch (MalformedURLException e) {
-      System.err.println("Invalid resource.");
+      System.err.println("Invalid multimedia resource.");
     }
     if (url == null) return;
     Image img = new ImageIcon(url).getImage();

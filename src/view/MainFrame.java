@@ -3,15 +3,14 @@ package view;
 import controller.actions.ActionManager;
 import error.ErrorFactory;
 import error.MyError;
+import gui.swing.tree.MyTreeNode;
 import gui.swing.tree.WorkspaceTree;
 import lombok.Getter;
 import gui.swing.tree.WorkspaceModel;
 import lombok.Setter;
-import model.Presentation;
-import model.Project;
-import model.RuNode;
-import model.Slide;
+import model.*;
 import observer.ISubscriber;
+import view.popups.LoadWorkspaceDialog;
 
 import javax.swing.*;
 import java.awt.*;
@@ -47,8 +46,8 @@ public class MainFrame extends JFrame implements ISubscriber {
 
     ErrorFactory.getInstance().addSubscriber(this);
 
-    initializeWorkspaceTree();
     initializeGUI();
+    initializeWorkspaceTree();
     addElements();
   }
 
@@ -91,9 +90,22 @@ public class MainFrame extends JFrame implements ISubscriber {
   }
 
   private void initializeWorkspaceTree() {
+    LoadWorkspaceDialog loadWorkspaceDialog = new LoadWorkspaceDialog();
+    loadWorkspaceDialog.setVisible(true);
+
+    if (loadWorkspaceDialog.getSelectedOption() == LoadWorkspaceDialog.EXIT) {
+      System.exit(0);
+    }
+
     workspaceTree = new WorkspaceTree();
     workspaceModel = new WorkspaceModel();
     workspaceTree.setModel(workspaceModel);
+
+    if (loadWorkspaceDialog.getSelectedOption() == LoadWorkspaceDialog.LOAD) {
+      this.actionManager.getOpenProjectAction().loadWorkspace(
+              (Workspace) ((MyTreeNode) getWorkspaceModel().getRoot()).getRuNode()
+      );
+    }
   }
 
   public static MainFrame getInstance() {
@@ -142,6 +154,13 @@ public class MainFrame extends JFrame implements ISubscriber {
       this.lastSelectedSlide = null;
     }
     refresh();
+  }
+
+  public void setChangedProject(boolean changed) {
+    if (getLastSelectedProject() != null) {
+      getLastSelectedProject().setChanged(changed);
+      SwingUtilities.updateComponentTreeUI(getWorkspaceTree());
+    }
   }
 
   public void refresh() {

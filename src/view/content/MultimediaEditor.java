@@ -75,7 +75,7 @@ public class MultimediaEditor extends JFrame {
     try {
       workPanel = new WorkPanel(new File(this.lastSelectedFilePath).toURI().toURL());
     } catch (MalformedURLException e) {
-      System.err.println("Invalid resource.");
+      System.err.println("Invalid multimedia resource.");
     }
     jPanel.removeAll();
     if (workPanel != null) {
@@ -97,7 +97,7 @@ public class MultimediaEditor extends JFrame {
         workPanel.setPreferredSize(new Dimension(200, 200));
       }
     } catch (MalformedURLException e) {
-      System.err.println("Invalid resource.");
+      System.err.println("Invalid multimedia resource.");
     }
   }
 

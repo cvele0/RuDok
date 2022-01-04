@@ -2,6 +2,7 @@ package controller.edit;
 
 import model.Presentation;
 import model.Slot;
+import state.slot.AddSlotState;
 import state.slot.SelectSlotState;
 import view.MainFrame;
 import view.popups.SelectSlotTypeDialog;
@@ -45,10 +46,16 @@ public class MouseClickController extends MouseInputAdapter {
       } else {
         ((Presentation) slot.getParent().getParent()).startMouseClick(slot.getParent(), slot, position);
       }
-    } else { // add slot
+      MainFrame.getInstance().setChangedProject(true);
+    } else { // add slot, basic click
       ((Presentation) slideView.getSlide().getParent()).startMouseClick(slideView.getSlide(), null, position);
+      if (MainFrame.getInstance().getLastSelectedPresentation() != null &&
+          MainFrame.getInstance().getLastSelectedPresentation().getCurrentSlotState() instanceof AddSlotState) {
+        MainFrame.getInstance().setChangedProject(true);
+      }
     }
     MainFrame.getInstance().repaint();
+    //MainFrame.getInstance().setLastSelected(slideView.getSlide());
   }
 
   @Override

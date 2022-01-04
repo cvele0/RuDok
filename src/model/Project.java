@@ -3,12 +3,14 @@ package model;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.File;
+
 @Getter
 @Setter
 
 public class Project extends RuNodeComposite {
   public static int projectCounter = 0;
-  private int serialNumber;
+  private File projectFile;
 
   public Project() {
 
@@ -21,7 +23,7 @@ public class Project extends RuNodeComposite {
 
   @Override
   public String toString() {
-    return getName();
+    return ((isChanged() ? "*" : "") + getName());
   }
 
   @Override

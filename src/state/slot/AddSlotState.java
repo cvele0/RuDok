@@ -25,18 +25,9 @@ public class AddSlotState implements SlotState {
   public void mouseClick(Slide slide, Slot slot, Point position) {
     Slot newSlot = new Slot(position);
     newSlot.setColor(this.color);
-    newSlot.setDimension(new Dimension(50, 50));
     newSlot.setInterruptedStroke(interruptedStroke);
     newSlot.setLineWidth(lineWidth);
-
-    if (!isInterruptedStroke()) {
-      newSlot.setStroke(new BasicStroke((float) getLineWidth(), BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER));
-    } else {
-      newSlot.setStroke(new BasicStroke((float) getLineWidth(), BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER,
-              2f, new float[]{7}, 0.0f));
-    }
-
-    newSlot.setParent(slide);  //newSlot.setPaint(Color.BLUE);
+    newSlot.setParent(slide);
     slide.addSlot(newSlot);
   }
 

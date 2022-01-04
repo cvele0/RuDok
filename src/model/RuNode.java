@@ -5,27 +5,29 @@ import lombok.Setter;
 import observer.IPublisher;
 import observer.ISubscriber;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
 
-public class RuNode implements IPublisher {
+public class RuNode implements IPublisher, Serializable {
   private String name;
   private RuNode parent;
+  private transient boolean changed;
 
-  private List<ISubscriber> subscribers;
+  private transient List<ISubscriber> subscribers;
 
   public RuNode() {
-
+    this.changed = false;
   }
 
   public void setName(String name) {
     this.name = name;
     notifySubscribers(this);
   }
-  
+
   public void setName(String name, int size) {}
 
   @Override

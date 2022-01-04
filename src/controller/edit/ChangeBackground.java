@@ -33,6 +33,7 @@ public class ChangeBackground implements ActionListener {
 
     if (imageURL != null) {
       MainFrame.getInstance().getLastSelectedPresentation().setImageURL(imageURL);
+      MainFrame.getInstance().setChangedProject(true);
       MainFrame.getInstance().refresh();
     }
 

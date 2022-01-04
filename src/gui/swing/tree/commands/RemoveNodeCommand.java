@@ -14,6 +14,13 @@ public class RemoveNodeCommand extends AbstractCommand {
     super(myTreeNode);
   }
 
+  private void setChanged() {
+    if (myParent.getRuNode() instanceof Workspace) {
+      myParent.setChanged(true);
+    }
+    MainFrame.getInstance().setChangedProject(true);
+  }
+
   @Override
   public void doCommand() {
     //Node deletion
@@ -32,8 +39,9 @@ public class RemoveNodeCommand extends AbstractCommand {
     }
 
     ((RuNodeComposite) ruNode.getParent()).removeChild(ruNode);
+    MainFrame.getInstance().setLastSelected(ruNode.getParent());
     MainFrame.getInstance().getWorkspaceTree().removeProject(getMyTreeNode());
-    MainFrame.getInstance().refresh();
+    setChanged();
   }
 
   @Override
@@ -41,6 +49,6 @@ public class RemoveNodeCommand extends AbstractCommand {
     ((RuNodeComposite) getMyParent().getRuNode()).addChild(getMyTreeNode().getRuNode());
     MainFrame.getInstance().getWorkspaceTree().addProject(getMyTreeNode());
     MainFrame.getInstance().setLastSelected(getMyTreeNode().getRuNode());
-    MainFrame.getInstance().refresh();
+    setChanged();
   }
 }
