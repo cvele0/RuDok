@@ -7,6 +7,8 @@ import model.factory.AbstractNodeFactory;
 import model.factory.FactoryGenerator;
 import view.MainFrame;
 
+import java.util.ArrayList;
+
 @Getter
 
 public class AddNodeCommand extends AbstractCommand {
@@ -14,12 +16,25 @@ public class AddNodeCommand extends AbstractCommand {
 
   public AddNodeCommand(MyTreeNode myTreeNode) {
     super(myTreeNode);
+    setToBeExecuted(new ArrayList<>());
   }
 
   private void setChanged() {
     MainFrame.getInstance().setChangedProject(true);
     if (myChild.getRuNode() instanceof Project) {
       getMyTreeNode().setChanged(true);
+    }
+  }
+
+  private void addSlidesDfs(MyTreeNode u, MyTreeNode origin) {
+    if (u.getRuNode() == ((MyTreeNode) origin.getParent()).getRuNode()) {
+      MyTreeNode newNode = new MyTreeNode(origin.getRuNode());
+      newNode.setParent(u);
+      getToBeExecuted().add(newNode);
+      return;
+    }
+    for (MyTreeNode v : u.getProjects()) {
+      addSlidesDfs(v, origin);
     }
   }
 
@@ -35,15 +50,15 @@ public class AddNodeCommand extends AbstractCommand {
       child.setParent(getMyTreeNode());
       this.myChild = child;
 
-      MainFrame.getInstance().setLastSelected(child.getRuNode());
-    } else {
-      RuNode child = getMyChild().getRuNode();
-      RuNode parent = getMyTreeNode().getRuNode();
-
-      ((RuNodeComposite) parent).addChild(child);
-      MainFrame.getInstance().setLastSelected(child);
+      if (myChild.getRuNode() instanceof Slide) { // Adding slots to shared presentations
+        addSlidesDfs((MyTreeNode) MainFrame.getInstance().getWorkspaceModel().getRoot(), myChild);
+      } else {
+        getToBeExecuted().add(myChild);
+      }
     }
-    MainFrame.getInstance().getWorkspaceTree().addProject(myChild);
+    MainFrame.getInstance().setLastSelected(myChild.getRuNode());
+    setDoneFirst(false);
+    addNodes();
     setChanged();
   }
 
@@ -61,8 +76,11 @@ public class AddNodeCommand extends AbstractCommand {
     }
 
     MainFrame.getInstance().setLastSelected(ruNode);
-    ((RuNodeComposite) ruNode.getParent()).removeChild(ruNode);
-    MainFrame.getInstance().getWorkspaceTree().removeProject(getMyChild());
+
+    getToBeExecuted().clear();
+    removeNodesDfs((MyTreeNode) MainFrame.getInstance().getWorkspaceModel().getRoot(), myChild);
+    setDoneFirst(false);
+    removeNodes();
     setChanged();
   }
 }

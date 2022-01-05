@@ -9,6 +9,7 @@ public class Menu extends JMenuBar {
     fileMenu.setMnemonic(KeyEvent.VK_F);
     fileMenu.add(MainFrame.getInstance().getActionManager().getOpenProjectAction());
     fileMenu.add(MainFrame.getInstance().getActionManager().getNewProjectAction());
+    fileMenu.add(MainFrame.getInstance().getActionManager().getSharePresentationAction());
     fileMenu.add(MainFrame.getInstance().getActionManager().getSaveProjectAction());
 
     JMenu editMenu = new JMenu("Edit");

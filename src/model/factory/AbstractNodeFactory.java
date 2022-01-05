@@ -8,7 +8,7 @@ public abstract class AbstractNodeFactory {
     RuNode newNode = createRuNode();
     newNode.setParent(parent);
     newNode.setName("", size);
-    ((RuNodeComposite) parent).addChild(newNode);
+    //((RuNodeComposite) parent).addChild(newNode);
     return newNode;
   }
 

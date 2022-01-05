@@ -78,7 +78,6 @@ public class OpenProjectAction extends AbstractRudokAction {
             Project project = loadProjectFromFile(file);
             createNodeForProject(project);
             loadedSuccessfully = true;
-            //if (project != null) System.out.println(project.getProjectFile().getAbsolutePath());
           } catch (IOException e) {
             System.err.println("Invalid workspace resource.");
           }

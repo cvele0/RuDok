@@ -16,6 +16,7 @@ import java.net.URL;
 public class Presentation extends RuNodeComposite {
   private String authorName;
   private URL imageURL;
+  private transient boolean shared;
 
   private int lastSelectedSlideView;
 
@@ -25,6 +26,7 @@ public class Presentation extends RuNodeComposite {
   public Presentation() {
     slotStateManager = new SlotStateManager();
     stateManager = new StateManager();
+    this.shared = false;
     this.lastSelectedSlideView = 0;
     this.authorName = "Unknown";
     this.imageURL = getClass().getResource("images/default.jpg");
@@ -48,6 +50,7 @@ public class Presentation extends RuNodeComposite {
   private Object readResolve() {
     slotStateManager = new SlotStateManager();
     stateManager = new StateManager();
+    this.shared = false;
     return this;
   }
 

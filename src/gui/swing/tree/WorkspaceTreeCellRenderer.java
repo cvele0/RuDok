@@ -26,6 +26,12 @@ public class WorkspaceTreeCellRenderer extends DefaultTreeCellRenderer {
     if (value instanceof MyTreeNode) {
       MyTreeNode myTreeNode = (MyTreeNode) value;
 
+      if (myTreeNode.getRuNode() instanceof Presentation) {
+        if (((Presentation) myTreeNode.getRuNode()).isShared()) {
+          setForeground(Color.RED);
+        }
+      }
+
       if (myTreeNode.getRuNode() instanceof Project) {
         URL imageURL = getClass().getResource("images/project20x20.png");
         Icon icon = null;

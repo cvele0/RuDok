@@ -26,11 +26,13 @@ public class RenameNodeCommand extends AbstractCommand {
   public void doCommand() {
     getMyTreeNode().getRuNode().setName(newName);
     setChanged();
+    MainFrame.getInstance().refresh();
   }
 
   @Override
   public void undoCommand() {
     getMyTreeNode().getRuNode().setName(oldName);
     setChanged();
+    MainFrame.getInstance().refresh();
   }
 }

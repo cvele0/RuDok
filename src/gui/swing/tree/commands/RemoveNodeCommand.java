@@ -5,6 +5,8 @@ import lombok.Getter;
 import model.*;
 import view.MainFrame;
 
+import java.util.ArrayList;
+
 @Getter
 
 public class RemoveNodeCommand extends AbstractCommand {
@@ -12,6 +14,7 @@ public class RemoveNodeCommand extends AbstractCommand {
 
   public RemoveNodeCommand(MyTreeNode myTreeNode) {
     super(myTreeNode);
+    setToBeExecuted(new ArrayList<>());
   }
 
   private void setChanged() {
@@ -38,17 +41,19 @@ public class RemoveNodeCommand extends AbstractCommand {
       this.myParent = (MyTreeNode) getMyTreeNode().getParent();
     }
 
-    ((RuNodeComposite) ruNode.getParent()).removeChild(ruNode);
     MainFrame.getInstance().setLastSelected(ruNode.getParent());
-    MainFrame.getInstance().getWorkspaceTree().removeProject(getMyTreeNode());
+    getToBeExecuted().clear();
+    removeNodesDfs((MyTreeNode) MainFrame.getInstance().getWorkspaceModel().getRoot(), getMyTreeNode());
+    setDoneFirst(false);
+    removeNodes();
     setChanged();
   }
 
   @Override
   public void undoCommand() {
-    ((RuNodeComposite) getMyParent().getRuNode()).addChild(getMyTreeNode().getRuNode());
-    MainFrame.getInstance().getWorkspaceTree().addProject(getMyTreeNode());
     MainFrame.getInstance().setLastSelected(getMyTreeNode().getRuNode());
+    setDoneFirst(false);
+    addNodes();
     setChanged();
   }
 }

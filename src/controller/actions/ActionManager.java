@@ -18,6 +18,7 @@ public class ActionManager {
   private OpenFileAction openFileAction;
   private SaveProjectAction saveProjectAction;
   private OpenProjectAction openProjectAction;
+  private SharePresentationAction sharePresentationAction;
 
   public ActionManager() {
     initialize();
@@ -37,5 +38,6 @@ public class ActionManager {
     openFileAction= new OpenFileAction();
     saveProjectAction = new SaveProjectAction();
     openProjectAction = new OpenProjectAction();
+    sharePresentationAction = new SharePresentationAction();
   }
 }
