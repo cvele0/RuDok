@@ -4,7 +4,7 @@ import model.Slot;
 import view.MainFrame;
 import view.content.MultimediaSlotHandler;
 import view.content.TextSlotHandler;
-import view.rectangle.SlideRectangleSlotView;
+import view.rectangle.NormalRectangleSlotView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,9 +12,9 @@ import java.awt.*;
 public class SelectSlotTypeDialog extends JDialog {
   private JButton imageBtn;
   private JButton textBtn;
-  private SlideRectangleSlotView slotView;
+  private NormalRectangleSlotView slotView;
 
-  public SelectSlotTypeDialog(SlideRectangleSlotView slotView) {
+  public SelectSlotTypeDialog(NormalRectangleSlotView slotView) {
     super(MainFrame.getInstance(), "Select slot type", true);
     this.slotView = slotView;
     initialize();

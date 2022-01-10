@@ -31,6 +31,6 @@ public class NewProjectAction extends AbstractRudokAction {
       return;
     }
 
-    MainFrame.getInstance().getWorkspaceTree().getCommandManager().addCommand(new AddNodeCommand(myTreeNode));
+    MainFrame.getInstance().getWorkspaceTree().getCommandInvoker().addCommand(new AddNodeCommand(myTreeNode));
   }
 }

@@ -4,7 +4,7 @@ import view.MainFrame;
 
 import java.util.ArrayList;
 
-public class CommandManager {
+public class CommandInvoker {
   private ArrayList<AbstractCommand> commands = new ArrayList<>();
   private int currentCommand = 0;
 

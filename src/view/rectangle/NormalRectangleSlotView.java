@@ -2,8 +2,8 @@ package view.rectangle;
 
 import model.Slot;
 
-public class SlideRectangleSlotView extends RectangleSlotView {
-  public SlideRectangleSlotView(Slot slot) {
+public class NormalRectangleSlotView extends RectangleSlotView {
+  public NormalRectangleSlotView(Slot slot) {
     super(slot);
     setX(slot.getPosition().x);
     setY(slot.getPosition().y);

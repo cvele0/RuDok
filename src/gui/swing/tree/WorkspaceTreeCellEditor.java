@@ -42,7 +42,7 @@ public class WorkspaceTreeCellEditor extends DefaultTreeCellEditor implements Ac
       return;
     }
 
-    MainFrame.getInstance().getWorkspaceTree().getCommandManager().addCommand(
+    MainFrame.getInstance().getWorkspaceTree().getCommandInvoker().addCommand(
             new RenameNodeCommand((MyTreeNode) stavka, e.getActionCommand()));
   }
 }

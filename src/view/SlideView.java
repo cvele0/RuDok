@@ -6,7 +6,7 @@ import model.Presentation;
 import model.Slide;
 import model.Slot;
 import observer.ISubscriber;
-import view.rectangle.SlideRectangleSlotView;
+import view.rectangle.NormalRectangleSlotView;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -22,7 +22,7 @@ public class SlideView extends JPanel implements ISubscriber {
 
   private JLabel nameLabel;
 
-  List<SlideRectangleSlotView> rectangles;
+  private List<NormalRectangleSlotView> rectangles;
 
   public SlideView(Slide slide) {
     this.slide = slide;
@@ -88,7 +88,7 @@ public class SlideView extends JPanel implements ISubscriber {
 
       rectangles.clear();
       for (Slot slot : getSlide().getSlots()) {
-        SlideRectangleSlotView r = new SlideRectangleSlotView(slot);
+        NormalRectangleSlotView r = new NormalRectangleSlotView(slot);
         rectangles.add(r);
         r.paint(g);
       }

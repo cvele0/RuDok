@@ -21,7 +21,7 @@ public class SmallSlideView extends JPanel implements ISubscriber {
 
   private JLabel nameLabel;
 
-  List<SmallRectangleSlotView> rectangles;
+  private List<SmallRectangleSlotView> rectangles;
 
   public SmallSlideView(Slide slide) {
     this.slide = slide;

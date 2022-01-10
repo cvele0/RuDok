@@ -17,6 +17,6 @@ public class RedoAction extends AbstractRudokAction {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    MainFrame.getInstance().getWorkspaceTree().getCommandManager().doCommand();
+    MainFrame.getInstance().getWorkspaceTree().getCommandInvoker().doCommand();
   }
 }

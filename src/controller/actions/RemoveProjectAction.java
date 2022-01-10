@@ -31,6 +31,6 @@ public class RemoveProjectAction extends AbstractRudokAction {
       return;
     }
 
-    MainFrame.getInstance().getWorkspaceTree().getCommandManager().addCommand(new RemoveNodeCommand(myTreeNode));
+    MainFrame.getInstance().getWorkspaceTree().getCommandInvoker().addCommand(new RemoveNodeCommand(myTreeNode));
   }
 }

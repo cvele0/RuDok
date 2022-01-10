@@ -1,6 +1,6 @@
 package gui.swing.tree;
 
-import gui.swing.tree.commands.CommandManager;
+import gui.swing.tree.commands.CommandInvoker;
 import lombok.Getter;
 
 import javax.swing.*;
@@ -9,10 +9,10 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 @Getter
 
 public class WorkspaceTree extends JTree {
-  private CommandManager commandManager;
+  private CommandInvoker commandInvoker;
 
   public WorkspaceTree() {
-    commandManager = new CommandManager();
+    commandInvoker = new CommandInvoker();
     addTreeSelectionListener(new WorkspaceTreeController());
     setCellEditor(new WorkspaceTreeCellEditor(this, new DefaultTreeCellRenderer()));
     setCellRenderer(new WorkspaceTreeCellRenderer());

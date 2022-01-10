@@ -22,7 +22,7 @@ public class SlideshowSlideView extends JPanel implements ISubscriber {
 
   private JLabel nameLabel;
 
-  List<SlideshowRectangleSlotView> rectangles;
+  private List<SlideshowRectangleSlotView> rectangles;
 
   public SlideshowSlideView(Slide slide) {
     this.slide = slide;
